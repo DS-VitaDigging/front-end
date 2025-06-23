@@ -1,5 +1,11 @@
+import NavBar from "../components/common/nav/navBar";
+
 const Home = () => {
-    return <h1>홈 페이지</h1>;
+    return (
+        <div>
+            <NavBar />
+        </div>
+    );
 };
 
 export default Home;

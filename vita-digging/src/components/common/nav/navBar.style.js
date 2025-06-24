@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-// import theme from '@styles/theme';
 
 export const navContainer = css`
   display: flex;
@@ -23,17 +22,19 @@ export const navItem = css`
 `;
 
 export const iconStyle = css`
-    width: 3.4rem;        
-    height: 3.4rem;
-    margin-bottom: 0.5rem;
+  width: 3.4rem;        
+  height: 3.4rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
 export const largeIcon = css`
   width: 4rem;
   height: 4rem;
   margin-bottom: 0;
+  cursor: pointer;
 `;
 
 export const labelStyle = css`
-    font-size: 1.2rem;  
+  font-size: 1.2rem;  
 `;

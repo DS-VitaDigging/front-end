@@ -1,9 +1,8 @@
-import NavBar from "../components/common/nav/navBar";
 
 const Home = () => {
     return (
         <div>
-            <NavBar />
+            홈 화면
         </div>
     );
 };

@@ -17,8 +17,9 @@ export default function Header() {
 
 const headerWrapper = css`
     display: flex;
-    padding: 1.4rem;
+    padding: 1.3rem 1.5rem;
     width: 40.2rem;
+    height: 5rem;
     flex-shrink: 0;
     position: fixed;
     top: 0;
@@ -28,11 +29,12 @@ const headerWrapper = css`
 
 const headerText = css`
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 700;
 `
 
 const logoImg = css`
-    width: 3.4rem;
-    height: 3.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-left: 0.3rem;
 `

@@ -1,17 +1,16 @@
 import { css } from '@emotion/react';
-// import theme from '@styles/theme';
 
 export const navContainer = css`
   display: flex;
   align-items: center;
   background-color: #fff;
-  padding: 1rem;              
+  padding: 1rem 1.9rem;              
   border-top: 0.1rem solid #e0e0e0;  
   position: fixed;
   bottom: 0;
   width: 40.2rem;
   z-index: 10;
-  gap: 3.6rem;
+  gap: 4.5rem;
 `;
 
 export const navItem = css`
@@ -19,21 +18,23 @@ export const navItem = css`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.9rem;
+  gap: 0.4rem;
 `;
 
 export const iconStyle = css`
-    width: 3.4rem;        
-    height: 3.4rem;
-    margin-bottom: 0.5rem;
+  width: 2.4rem;        
+  height: 2.4rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
 export const largeIcon = css`
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   margin-bottom: 0;
+  cursor: pointer;
 `;
 
 export const labelStyle = css`
-    font-size: 1.2rem;  
+  font-size: 1rem;  
 `;

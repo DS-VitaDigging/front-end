@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles/globalStyle';
 import { Global, ThemeProvider } from '@emotion/react';
 import Header from './components/common/Header/header';
-import NavBar from './components/common/Nav/navBar';
+import NavBar from './components/common/nav/navBar';
 
 function App() {
   return (

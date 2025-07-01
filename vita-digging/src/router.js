@@ -4,6 +4,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Survey from './pages/Survey/Survey';
 import Chat from './pages/Survey/Chat/Chat';
+import ChatList from './pages/Survey/ChatList/ChatList';
 
 
 export const AppRouter = () => {
@@ -14,6 +15,7 @@ export const AppRouter = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/survey" element={<Survey />} />
             <Route path="/survey/chat" element={<Chat />} />
+            <Route path="/survey/chat/list" element={<ChatList />} />
         </Routes>
     );
 };

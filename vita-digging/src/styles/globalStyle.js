@@ -32,7 +32,7 @@ const GlobalStyle = css`
     width: 100%;
     max-width: 40.2rem;
     margin: 0 auto;
-    min-height: 100vh;
+    min-height: 86.4rem;
     background-color: ${theme.colors['bg-white']};
 
     box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2);

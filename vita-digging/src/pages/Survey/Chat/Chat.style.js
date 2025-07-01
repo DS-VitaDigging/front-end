@@ -68,6 +68,7 @@ export const resultMessage = css`
     background-color: #FFECBA;
     align-self: flex-start;
     font-size: 1.5rem;
+    margin-bottom: 0;
 
     &::before {
         content: '';

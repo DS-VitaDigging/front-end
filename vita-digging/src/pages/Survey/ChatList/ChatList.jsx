@@ -2,9 +2,12 @@
 import * as styles from './ChatList.style';
 import { mockChats } from '../../../constants/chatData';
 import { useState } from 'react';
+import DeleteModal from './DeleteModal';
 
 const ChatList = () => {
     const [chats, setChats] = useState(mockChats);
+    const [showModal, setShowModal] = useState(false);
+    const [targetId, setTargetId] = useState(null);
 
     const sortedChats = [...chats].sort((a, b) => {
         if (a.status === 'progress' && b.status !== 'progress') return -1;
@@ -12,8 +15,20 @@ const ChatList = () => {
         return 0;
     });
 
-    const handleDelete = (id) => {
-        setChats(chats.filter((c) => c.id !== id));
+    const handleDeleteClick = (id) => {
+        setTargetId(id);
+        setShowModal(true);
+    };
+
+    const handleConfirmDelete = () => {
+        setChats(chats.filter((c) => c.id !== targetId));
+        setShowModal(false);
+        setTargetId(null);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setTargetId(null);
     };
 
     return (
@@ -48,13 +63,16 @@ const ChatList = () => {
                                 src="/icons/chat_delete.svg"
                                 alt="삭제"
                                 css={styles.deleteIcon}
-                                onClick={() => handleDelete(chat.id)}
+                                onClick={() => handleDeleteClick(chat.id)}
                             />
                         </div>
                         <div css={styles.contentText}>{chat.content}</div>
                     </div>
                 ))}
             </div>
+            {showModal && (
+                <DeleteModal onClose={handleCloseModal} onConfirm={handleConfirmDelete} />
+            )}
         </div>
     );
 };

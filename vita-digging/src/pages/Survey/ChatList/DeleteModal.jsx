@@ -68,4 +68,8 @@ const button = css`
     font-weight: bold;
     color: white;
     cursor: pointer;
+
+    &:hover {
+        color: #FEFAE0;
+    }
 `;

@@ -5,11 +5,17 @@ import UserMessage from './UserMessage';
 import ChatResultMessage from './ChatResultMessage';
 import ChatInput from './ChatInput';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { mockMessages } from '../../../constants/chatData';
 import CommonHeader from '../CommonHeader';
 
 const Chat = () => {
     const [messages, setMessages] = useState(mockMessages);
+    const navigate = useNavigate();
+
+    const goResule = () => {
+        navigate('/survey/chat')
+    }
 
     const handleSend = (text) => {
         setMessages([...messages, { type: 'user', text }]);
@@ -23,7 +29,7 @@ const Chat = () => {
                 {messages.map((msg, idx) => {
                     if (msg.type === 'bot') return <ChatBotMessage key={idx} message={msg.text} />;
                     if (msg.type === 'user') return <UserMessage key={idx} message={msg.text} />;
-                    if (msg.type === 'result') return <ChatResultMessage key={idx} message={msg.text} onClick={() => alert('이동!')} />;
+                    if (msg.type === 'result') return <ChatResultMessage key={idx} message={msg.text} onClick={goResule} />;
                 return null;
             })}
             </div>

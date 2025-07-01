@@ -97,6 +97,10 @@ export const resultButton = css`
     font-weight: bold;
     color: white;
     cursor: pointer;
+
+    &:hover {
+        color: #FEFAE0;
+    }
 `;
 
 export const inputWrapper = css`
@@ -125,4 +129,8 @@ export const sendButton = css`
     width: 6.6rem;
     color: white;
     cursor: pointer;
+
+    &:hover {
+        color: #FEFAE0;
+    }
 `;

@@ -86,4 +86,8 @@ export const button = css`
     color: #999;
     cursor: default;
   }
+  
+  &:hover {
+    color: #FEFAE0;
+  }
 `;

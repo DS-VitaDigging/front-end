@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { useNavigate } from 'react-router-dom';
+import CommonHeader from './CommonHeader';
 import * as styles from './Survey.style';
 import { useState } from 'react';
 
@@ -6,13 +8,15 @@ import { useState } from 'react';
 const Survey = () => {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
+    const navigate = useNavigate();
+
+    const goChat = () => {
+        navigate('/survey/chat')
+    }
 
     return (
         <div css={styles.wrapper}>
-            <div css={styles.header}>
-                건강 설문
-                <img src="/icons/history.svg" alt="history" css={styles.historyIcon} />
-            </div>
+            <CommonHeader />
 
             <div css={styles.card}>
                 <div css={styles.title}>OOO 님의 신체정보</div>
@@ -49,7 +53,7 @@ const Survey = () => {
                     <span css={styles.inputText}>kg</span>
                 </div>
 
-                <button css={styles.button}>설문하기</button>
+                <button onClick={goChat} css={styles.button}>설문하기</button>
             </div>
         </div>
     );

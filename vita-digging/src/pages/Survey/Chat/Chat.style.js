@@ -99,7 +99,7 @@ export const resultButton = css`
     cursor: pointer;
 
     &:hover {
-        color: #FEFAE0;
+        color: #A4B465CC;
     }
 `;
 
@@ -131,6 +131,6 @@ export const sendButton = css`
     cursor: pointer;
 
     &:hover {
-        color: #FEFAE0;
+        color: #A4B465CC;
     }
 `;

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './resultPage.style';
 
-const SupplementCard = ({ data }) => {
+const SupplementCard = ({ data, onClick }) => {
     return (
-        <div css={styles.cardWrapper}>
+        <div css={styles.cardWrapper} onClick={onClick}>
             <div css={styles.imageBox}>
                 <img src={data.image} alt={data.name} css={styles.supplementImage} />
             </div>

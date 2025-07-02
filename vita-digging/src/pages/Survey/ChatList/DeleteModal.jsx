@@ -70,6 +70,6 @@ const button = css`
     cursor: pointer;
 
     &:hover {
-        color: #FEFAE0;
+        color: #A4B465CC;
     }
 `;

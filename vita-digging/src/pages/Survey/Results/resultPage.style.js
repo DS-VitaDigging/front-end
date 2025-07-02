@@ -21,6 +21,7 @@ export const cardList = css`
     flex-direction: column;
     gap: 2rem;
     margin-top: 2.1rem;
+    margin-bottom: 5.5rem;
 
     overflow-y: auto;
     max-height: 62rem;
@@ -37,16 +38,17 @@ export const imageBox = css`
     align-items: center;
     margin-right: 2.7rem;
     width: 12rem;
-    border-radius: 2rem;
-    border: 1px solid #626F47;
     cover no-repeat;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 `;
 
 export const supplementImage = css`
     width: 100%;
     height: auto;
+    background-color: white;
+    border-radius: 2rem;
+    border: 1px solid #626F47;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 export const infoBox = css`

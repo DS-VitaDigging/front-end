@@ -4,7 +4,7 @@ export const wrapper = css`
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    margin-top: 5.9rem;
+    margin-top: rem;
 `;
 
 export const chatContainer = css`

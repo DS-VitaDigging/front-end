@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import * as styles from './Chat.style';
+import * as styles from '../Chat/Chat.style';
 
 const ChatBotMessage = ({ message }) => {
     return (

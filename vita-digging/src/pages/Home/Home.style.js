@@ -43,7 +43,6 @@ export const bannerImage = css`
 
 export const sectionWrapper = css`
     display: flex;
-    margin-top: 5rem;
     flex-wrap: wrap;
 `;
 

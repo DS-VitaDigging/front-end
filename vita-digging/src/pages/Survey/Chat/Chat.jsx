@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './Chat.style';
-import ChatBotMessage from './ChatBotMessage';
-import UserMessage from './UserMessage';
-import ChatResultMessage from './ChatResultMessage';
-import ChatInput from './ChatInput';
+import ChatBotMessage from '../components/ChatBotMessage';
+import UserMessage from '../components/UserMessage';
+import ChatResultMessage from '../components/ChatResultMessage';
+import ChatInput from '../components/ChatInput';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { mockMessages } from '../../../constants/chatData';
-import CommonHeader from '../CommonHeader';
+import CommonHeader from '../components/CommonHeader';
 
 const Chat = () => {
     const [messages, setMessages] = useState(mockMessages);

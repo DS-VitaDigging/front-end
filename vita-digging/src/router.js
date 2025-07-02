@@ -5,6 +5,7 @@ import Signup from './pages/Signup/Signup';
 import Survey from './pages/Survey/Survey';
 import Chat from './pages/Survey/Chat/Chat';
 import ChatList from './pages/Survey/ChatList/ChatList';
+import ResultPage from './pages/Survey/Results/resultPage';
 
 
 export const AppRouter = () => {
@@ -16,6 +17,7 @@ export const AppRouter = () => {
             <Route path="/survey" element={<Survey />} />
             <Route path="/survey/chat" element={<Chat />} />
             <Route path="/survey/chat/list" element={<ChatList />} />
+            <Route path='/survey/results' element={<ResultPage />} />
         </Routes>
     );
 };

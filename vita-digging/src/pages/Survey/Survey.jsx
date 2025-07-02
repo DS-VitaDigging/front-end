@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useNavigate } from 'react-router-dom';
-import CommonHeader from './CommonHeader';
+import CommonHeader from './components/CommonHeader';
 import * as styles from './Survey.style';
 import { useState } from 'react';
 

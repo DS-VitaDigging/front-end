@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import * as styles from './Chat.style';
+import * as styles from '../Chat/Chat.style';
 import { useState } from 'react';
 
 const ChatInput = ({ onSend }) => {

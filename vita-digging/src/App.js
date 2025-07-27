@@ -12,7 +12,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyle} />
         <Header />
-        <AppRouter />
+        <main>
+          <AppRouter />
+        </main>
         <NavBar />
       </ThemeProvider>
     </BrowserRouter>

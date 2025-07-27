@@ -8,7 +8,7 @@ import { carouselImages, ageTags, supplementCards } from '../../constants/homeDa
 import VitaCard from './VitaCard/VitaCard';
 
 const Home = () => {
-    const [selectedTag, setSelectedTag] = useState('50대 이상');
+    const [selectedTag, setSelectedTag] = useState('20대');
 
     const carouselSettings = {
         dots: true,

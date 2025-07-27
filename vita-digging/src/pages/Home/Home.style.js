@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const wrapper = css`
     padding: 2rem;
-    margin-top: 5.9rem;
+    margin-top: 5rem;
 `;
 
 export const title = css`
@@ -43,7 +43,6 @@ export const bannerImage = css`
 
 export const sectionWrapper = css`
     display: flex;
-    margin-top: 5rem;
     flex-wrap: wrap;
 `;
 

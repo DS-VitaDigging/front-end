@@ -19,6 +19,7 @@ export const navItem = css`
   align-items: center;
   text-align: center;
   gap: 0.4rem;
+  color: inherit;
 `;
 
 export const iconStyle = css`

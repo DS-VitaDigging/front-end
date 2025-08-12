@@ -14,27 +14,33 @@ const categories = [
 
 const CategorySelect = () => {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
 
   const handleSelect = (key) => {
-    setSelected(key);
+    if (selected.includes(key)) {
+      setSelected(selected.filter((k) => k !== key));
+    } else if (selected.length < 3) {
+      setSelected([...selected, key]);
+    }
   };
 
   const handleComplete = () => {
-    if (selected) {
-      navigate(`/category/${selected}`);
+    if (selected.length > 0) {
+      navigate(`/category/${selected.join(',')}`);
     }
   };
 
   return (
     <div css={styles.wrapper}>
-      <div css={styles.title}>원하는 건강 카테고리를 선택해주세요</div>
-      <div css={styles.subtitle}>최대 3개 선택 가능</div>
+      <div css={styles.textGroup}>
+        <div css={styles.title}>원하는 건강 카테고리를 선택해주세요</div>
+        <div css={styles.subtitle}>최대 3개 선택 가능</div>
+      </div>
       <div css={styles.grid}>
         {categories.map(({ key, label, icon }) => (
           <div
             key={key}
-            css={styles.categoryBox(selected === key)}
+            css={styles.categoryBox(selected.includes(key))}
             onClick={() => handleSelect(key)}
           >
             <img src={icon} alt={label} css={styles.icon} />
@@ -42,7 +48,11 @@ const CategorySelect = () => {
           </div>
         ))}
       </div>
-      <button css={styles.completeButton} onClick={handleComplete}>
+      <button
+        css={styles.completeButton}
+        onClick={handleComplete}
+        disabled={selected.length === 0}
+      >
         완료
       </button>
     </div>

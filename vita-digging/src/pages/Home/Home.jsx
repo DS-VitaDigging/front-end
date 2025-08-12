@@ -1,24 +1,38 @@
 /** @jsxImportSource @emotion/react */
 import Slider from 'react-slick';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as styles from './Home.style';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { carouselImages, ageTags, supplementCards } from '../../constants/homeData';
+import { carouselImages, ageTags, ageGroupMapping, carouselSettings } from '../../constants/homeData';
 import VitaCard from './VitaCard/VitaCard';
+import { getPopularProductsByAge } from '../../apis/Home/homeApi';
 
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const carouselSettings = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 400,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
+    // 연령대별 인기 제품 조회
+    const fetchPopularProducts = async (ageTag) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const ageGroupParam = ageGroupMapping[ageTag] || '20s';
+            const data = await getPopularProductsByAge(ageGroupParam);
+            setProducts(data);
+        } catch (err) {
+            setError('제품 정보를 불러오는데 실패했습니다.');
+        } finally {
+            setLoading(false);
+        }
     };
+
+    // 선택된 태그가 변경될 때 데이터 로드
+    useEffect(() => {
+        fetchPopularProducts(selectedTag);
+    }, [selectedTag]);
 
     return (
         <div css={styles.wrapper}>
@@ -38,6 +52,7 @@ const Home = () => {
             <div css={styles.sectionWrapper}>
                 <p css={styles.sectionTitle}>연령대 별 인기 영양제 Top 5</p>
 
+                {/* 연령대 태그 */}
                 <div css={styles.tagContainer}>
                     {ageTags.map(tag => (
                         <button
@@ -49,12 +64,25 @@ const Home = () => {
                         </button>
                     ))}
                 </div>
+
+                {/* 영양제 카드 */}
                 <div css={styles.cardScrollContainer}>
-                    {supplementCards.map(card => (
-                        <div key={card.id}>
-                            <VitaCard card={card} />
-                        </div>
-                    ))}
+                    {loading ? (
+                        <div>로딩 중...</div>
+                    ) : error ? (
+                        <div css={styles.errorMessage}>{error}</div>
+                    ) : (
+                        products.map(product => (
+                            <div key={product.id}>
+                                <VitaCard card={{
+                                    id: product.id,
+                                    title: product.name,
+                                    compony: product.manufacturer,
+                                    tags: [product.category, product.efficacy].filter(Boolean).map(tag => `#${tag}`)
+                                }} />
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </div>

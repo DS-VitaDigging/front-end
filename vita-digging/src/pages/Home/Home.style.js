@@ -88,5 +88,7 @@ export const cardScrollContainer = css`
     }
 `;
 
-
-
+export const errorMessage = css`
+    font-size: 1rem;
+    color: red;
+`;

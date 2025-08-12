@@ -2,6 +2,9 @@ import { css } from '@emotion/react';
 
 const Reset = css`
   html,
+  html {
+    font-size: 62.5%; 
+  }
   body,
   div,
   span,

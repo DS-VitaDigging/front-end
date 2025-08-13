@@ -12,9 +12,9 @@ export const chatContainer = css`
     flex-direction: column;
     max-height: 53rem;
     padding: 2rem;
+    padding-bottom: 12rem;
     flex: 1;
     overflow-y: auto;
-    margin-top: 3.2rem;
 `;
 
 export const messageBox = css`
@@ -105,7 +105,15 @@ export const resultButton = css`
 
 export const inputWrapper = css`
     display: flex;
-    padding-top: 1.33rem;
+    padding: 1.5rem 2rem;
+    background-color: white;
+    position: fixed;
+    bottom: 7rem; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 37.5rem;
+    z-index: 999;
 `;
 
 export const inputField = css`

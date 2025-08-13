@@ -45,10 +45,10 @@ const Chat = () => {
         
         setLoading(true);
         try {
-            // 전체 메시지 히스토리를 API로 전송 (이미 API 형식)
+            // 전체 메시지 히스토리를 API로 전송
             const response = await sendChatMessage(updatedMessages);
             
-            // 봇 응답 추가
+            // 응답 추가
             const botMessage = extractMessageFromResponse(response);
             setMessages(prev => [...prev, botMessage]);
             

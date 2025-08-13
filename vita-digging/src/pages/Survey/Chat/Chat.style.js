@@ -17,18 +17,39 @@ export const chatContainer = css`
     overflow-y: auto;
 `;
 
+// 메시지 애니메이션
+const slideUpAnimation = css`
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(2rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+
 export const messageBox = css`
+    ${slideUpAnimation}
     width: 28.9rem;
     padding: 1.9rem 2.1rem;
     border-radius: 2rem;
     margin-bottom: 2.5rem;
     line-height: 1.5;
     font-size: 1.3rem;
-    position: relative
+    position: relative;
+`;
+
+// 새 메시지용 애니메이션 스타일
+export const newMessageBox = css`
+    ${messageBox}
+    animation: slideUp 0.3s ease-out;
 `;
 
 export const botMessage = css`
-    ${messageBox};
+    ${newMessageBox};
     background-color: #FFECBA;
     align-self: flex-start;
 
@@ -46,7 +67,7 @@ export const botMessage = css`
 `;
 
 export const userMessage = css`
-    ${messageBox};
+    ${newMessageBox};
     background-color: #FEFAE0;
     align-self: flex-end;
 
@@ -64,7 +85,7 @@ export const userMessage = css`
 `;
 
 export const resultMessage = css`
-    ${messageBox};
+    ${newMessageBox};
     background-color: #FFECBA;
     align-self: flex-start;
     font-size: 1.5rem;

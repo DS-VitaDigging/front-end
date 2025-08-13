@@ -38,14 +38,13 @@ const Chat = () => {
     }
 
     const handleSend = async (text) => {
-        // 사용자 메시지 즉시 추가
         const newUserMessage = { role: 'user', content: text };
         const updatedMessages = [...messages, newUserMessage];
         setMessages(updatedMessages);
         
         setLoading(true);
         try {
-            // 전체 메시지 히스토리를 API로 전송
+            // 전체 메시지 전송
             const response = await sendChatMessage(updatedMessages);
             
             // 응답 추가

@@ -3,15 +3,45 @@ import { useNavigate } from 'react-router-dom';
 import CommonHeader from './components/CommonHeader';
 import * as styles from './Survey.style';
 import { useState } from 'react';
+import { sendChatMessage } from '../../api/chat';
+import { INITIAL_CHAT_MESSAGE } from '../../constants/chatData';
 
 
 const Survey = () => {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const goChat = () => {
-        navigate('/survey/chat')
+    const goChat = async () => {
+        if(!height || !weight) {
+            alert('모든 항목을 입력해주세요.');
+            return;
+        }
+
+        setLoading(true);
+        try {
+            // 초기 메시지로 채팅 시작
+            const initialMessages = [{
+                role: 'user',
+                content: INITIAL_CHAT_MESSAGE
+            }];
+            
+            const response = await sendChatMessage(initialMessages);
+            
+            // 응답과 함께 채팅 페이지로 이동
+            navigate('/survey/chat', { 
+                state: { 
+                    initialResponse: response,
+                    chatHistory: initialMessages
+                }
+            });
+        } catch (error) {
+            console.error('채팅 시작 실패:', error);
+            alert('서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -53,7 +83,9 @@ const Survey = () => {
                     <span css={styles.inputText}>kg</span>
                 </div>
 
-                <button onClick={goChat} css={styles.button}>설문하기</button>
+                <button onClick={goChat} css={styles.button} disabled={loading}>
+                    {loading ? '채팅 준비 중...' : '설문하기'}
+                </button>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CommonHeader from './components/CommonHeader';
 import * as styles from './Survey.style';
 import { useState } from 'react';
-import { sendChatMessage } from '../../api/chat';
+import { sendChatMessage, sendBodyInfo } from '../../api/chat';
 import { INITIAL_CHAT_MESSAGE } from '../../constants/chatData';
 
 
@@ -21,6 +21,14 @@ const Survey = () => {
 
         setLoading(true);
         try {
+            // 신체 정보 전송
+            const bodyInfo = {
+                height,
+                weight
+            };
+
+            await sendBodyInfo(bodyInfo);
+
             // 초기 메시지로 채팅 시작
             const initialMessages = [{
                 role: 'user',
@@ -49,16 +57,16 @@ const Survey = () => {
             <CommonHeader />
 
             <div css={styles.card}>
-                <div css={styles.title}>OOO 님의 신체정보</div>
+                <div css={styles.title}>OOO 님의 신체정보</div> {/* TODO: 유저 이름 연결 필요 */}
 
                 <div css={styles.row}>
                     <span css={styles.label}>나이</span>
-                    <span css={styles.value}>23세 (만 21세)</span>
+                    <span css={styles.value}>23세 (만 21세)</span> {/* TODO: 나이 연결 필요*/}
                 </div>
 
                 <div css={styles.row}>
                     <span css={styles.label}>성별</span>
-                    <span css={styles.value}>여성</span>
+                    <span css={styles.value}>여성</span> {/* TODO: 성별 연결 필요 */}
                 </div>
 
                 <div css={styles.row}>

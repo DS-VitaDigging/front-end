@@ -1,5 +1,23 @@
 import axiosInstance from '../apis/axiosInstance';
 
+/* 신체 정보 전송 */
+export const sendBodyInfo = async (bodyInfo) => {
+  try {
+    // 토큰 가져오기
+    const token = localStorage.getItem('accessToken');
+
+    const response = await axiosInstance.post('/api/surveys/body', bodyInfo, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('신체 정보 전송 실패:', error);
+    throw error;
+  }
+};
+
 /**
  * 채팅 메시지를 백엔드로 전송
  * @param {Array} messages 

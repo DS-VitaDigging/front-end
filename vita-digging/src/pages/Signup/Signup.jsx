@@ -2,17 +2,16 @@
 import { useState } from 'react';
 import * as styles from './Signup.style';
 import { useNavigate } from 'react-router-dom';
-import { signupUser } from '../../apis/auth';
 
 const Signup = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    nickname: '',
-    username: '',
+    id: '',
+    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    passwordConfirm: '',
     birth: '',
     gender: '',
   });
@@ -34,7 +33,7 @@ const Signup = () => {
       }));
     }
 
-    if (name === 'confirmPassword') {
+    if (name === 'passwordConfirm') {
       setErrors((prev) => ({
         ...prev,
         passwordMatch: value !== form.password,
@@ -43,24 +42,33 @@ const Signup = () => {
   };
 
   const handleSignup = async () => {
-    const { nickname, username, email, password, confirmPassword, birth, gender } = form;
+    const { id, name, email, password, passwordConfirm, birth, gender } = form;
 
     if (errors.passwordFormat || errors.passwordMatch) {
       alert('비밀번호를 확인해주세요.');
       return;
     }
 
-    const birthYear = parseInt(birth?.split('-')[0], 10);
-
     try {
-      await signupUser({
-        nickname,
-        username,
-        password,
-        email,
-        birthYear,
-        gender,
+      const response = await fetch('http://localhost:8080/api/member/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          password,
+          passwordConfirm,
+          email,
+          birth,
+          gender,
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error('회원가입 요청 실패');
+      }
 
       alert('회원가입이 완료되었습니다.');
       navigate('/login');
@@ -80,12 +88,12 @@ const Signup = () => {
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>아이디</label>
-        <input type="text" name="username" value={form.username} onChange={handleChange} css={styles.input} />
+        <input type="text" name="id" value={form.id} onChange={handleChange} css={styles.input} />
       </div>
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>닉네임</label>
-        <input type="text" name="nickname" value={form.nickname} onChange={handleChange} css={styles.input} />
+        <input type="text" name="name" value={form.name} onChange={handleChange} css={styles.input} />
       </div>
 
       <div css={styles.fieldGroup}>
@@ -110,8 +118,8 @@ const Signup = () => {
         <label css={styles.label}>비밀번호 확인</label>
         <input
           type="password"
-          name="confirmPassword"
-          value={form.confirmPassword}
+          name="passwordConfirm"
+          value={form.passwordConfirm}
           onChange={handleChange}
           css={styles.input}
           placeholder="비밀번호를 다시 입력해 주세요"

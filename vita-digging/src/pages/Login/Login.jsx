@@ -2,19 +2,28 @@
 import { useState } from 'react';
 import * as styles from './Login.style';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../apis/auth';
 
 const Login = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({ id: '', password: '' });
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleLogin = async () => {
     try {
-      const res = await loginUser({ id, password });
-      const token = res.token;
+      const response = await fetch('http://localhost:8080/api/member/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
 
-      localStorage.setItem('accessToken', token);
+      if (!response.ok) throw new Error('로그인 요청 실패');
+
+      const data = await response.json();
+      localStorage.setItem('accessToken', data.token);
       navigate('/');
     } catch (error) {
       console.error('로그인 실패:', error);
@@ -30,9 +39,10 @@ const Login = () => {
         <label htmlFor="id" css={styles.label}>아이디</label>
         <input
           id="id"
+          name="id"
           type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
+          value={form.id}
+          onChange={handleChange}
           css={styles.input}
         />
       </div>
@@ -41,9 +51,10 @@ const Login = () => {
         <label htmlFor="password" css={styles.label}>비밀번호</label>
         <input
           id="password"
+          name="password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           css={styles.input}
         />
       </div>

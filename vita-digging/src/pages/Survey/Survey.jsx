@@ -2,16 +2,31 @@
 import { useNavigate } from 'react-router-dom';
 import CommonHeader from './components/CommonHeader';
 import * as styles from './Survey.style';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { sendChatMessage, sendBodyInfo } from '../../apis/Survey/chat';
 import { INITIAL_CHAT_MESSAGE } from '../../constants/chatData';
-
+import { getUserProfile } from '../../apis/Mypage/profileApi';
 
 const Survey = () => {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [loading, setLoading] = useState(false);
+    const [userProfile, setUserProfile] = useState([]);
     const navigate = useNavigate();
+
+    const fetchUserProfile = async () => {
+        try {
+            const userProfile = await getUserProfile();
+            setUserProfile(userProfile);
+
+        } catch (error) {
+            console.error('프로필 조회 실패:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserProfile();
+    }, []);
 
     const goChat = async () => {
         if(!height || !weight) {
@@ -57,16 +72,16 @@ const Survey = () => {
             <CommonHeader />
 
             <div css={styles.card}>
-                <div css={styles.title}>OOO 님의 신체정보</div> {/* TODO: 유저 이름 연결 필요 */}
+                <div css={styles.title}>{userProfile.name} 님의 신체정보</div>
 
                 <div css={styles.row}>
                     <span css={styles.label}>나이</span>
-                    <span css={styles.value}>23세 (만 21세)</span> {/* TODO: 나이 연결 필요*/}
+                    <span css={styles.value}>{userProfile.age}</span> 
                 </div>
 
                 <div css={styles.row}>
                     <span css={styles.label}>성별</span>
-                    <span css={styles.value}>여성</span> {/* TODO: 성별 연결 필요 */}
+                    {/* <span css={styles.value}>{userProfile.gender}</span>  */}
                 </div>
 
                 <div css={styles.row}>

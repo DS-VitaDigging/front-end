@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
     padding: 2rem;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 `;
 
 export const title = css`
@@ -13,7 +14,7 @@ export const title = css`
 `;
 
 export const carouselStyle = css`
-    margin: 3rem 0;
+    margin: 2rem 0;
 
     .slick-dots {
         position: absolute;
@@ -43,20 +44,30 @@ export const bannerImage = css`
 
 export const sectionWrapper = css`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; 
+    width: 100%;
 `;
 
 export const sectionTitle = css`
     font-weight: bold;
     font-size: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 `;
 
 export const tagContainer = css`
     display: flex;
     gap: 1rem;
     margin: 2rem 0;
-    flex-wrap: wrap;
+    overflow-x: auto;  
+    flex-wrap: nowrap; 
+    padding-bottom: 0.5rem;
+    
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export const tagButton = css`
@@ -65,9 +76,11 @@ export const tagButton = css`
     border-radius: 2rem;
     background-color: #FFCF50;
     font-size: 1.4rem;
+    white-space: nowrap; 
+    flex-shrink: 0; 
 
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s ease; 
 `;
 
 export const activeTagButton = css`
@@ -79,14 +92,17 @@ export const cardScrollContainer = css`
     display: flex;
     gap: 2rem;
     padding-bottom: 1rem;
+    min-height: 22rem;  
     overflow-x: auto;
 
-    -ms-overflow-style: none; /* IE, Edge */
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
         display: none;
     }
 `;
 
-
-
+export const errorMessage = css`
+    font-size: 1rem;
+    color: red;
+`;

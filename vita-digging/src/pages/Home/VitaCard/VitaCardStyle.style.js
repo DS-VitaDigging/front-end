@@ -9,7 +9,7 @@ export const cardBox = css`
     border: none;
     border-radius: 2rem;
     width: 15rem;
-    height: 20.3rem;
+    height: 21rem;
 
     padding: 2rem 1.5rem 1.7rem 1.5rem;
     background-color: #FEFAE0;

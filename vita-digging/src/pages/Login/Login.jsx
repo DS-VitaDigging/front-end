@@ -1,13 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 import * as styles from './Login.style';
+import axiosInstance from '../../apis/axiosInstance';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    console.log('로그인 시도:', id, password);
+  const handleLogin = async () => {
+    try {
+      const res = await axiosInstance.post('/api/users/login', {
+        username: id,
+        password,
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

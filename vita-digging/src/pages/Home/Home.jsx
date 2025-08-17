@@ -34,6 +34,27 @@ const Home = () => {
         fetchPopularProducts(selectedTag);
     }, [selectedTag]);
 
+    const createTags = (product) => {
+        const tags = [];
+        
+        // 카테고리 추가
+        if (product.category) {
+            tags.push(product.category);
+        }
+        
+        // ingredients 처리 (쉼표로 분리 후 앞의 2개만)
+        if (product.ingredients) {
+            const ingredientList = product.ingredients
+                .split(',')
+                .map(ingredient => ingredient.trim())
+                .filter(ingredient => ingredient.length > 0)
+                .slice(0, 2); 
+            tags.push(...ingredientList);
+        }
+        
+        return tags.filter(Boolean).map(tag => `#${tag}`);
+    };
+
     return (
         <div css={styles.wrapper}>
             <h3 css={styles.title}>
@@ -78,8 +99,8 @@ const Home = () => {
                                     id: product.id,
                                     title: product.name,
                                     compony: product.manufacturer,
-                                    image: product.image || product.imageUrl || "/images/dummy_pill.png",  // 🔥 이미지 추가
-                                    tags: [product.category, product.ingredients].filter(Boolean).map(tag => `#${tag}`)
+                                    image: product.imageUrl,
+                                    tags: createTags(product)
                                 }} />
                             </div>
                         ))

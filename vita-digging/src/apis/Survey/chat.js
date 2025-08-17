@@ -8,7 +8,7 @@ export const sendBodyInfo = async (bodyInfo) => {
 
     const response = await axiosInstance.post('/api/surveys/body', bodyInfo, {
       headers: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       }
     });
     return response.data;
@@ -35,7 +35,7 @@ export const sendChatMessage = async (messages) => {
       { messages },
       {
         headers: {
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       }
     );

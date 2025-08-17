@@ -11,6 +11,7 @@ import BeforeLogin from './pages/Mypage/BeforeLogin';
 import CategorySelect from './pages/Category/CategorySelect';
 import SupplementList from './pages/Category/SupplementList';
 import SupplementDetail from './pages/Category/SupplementDetail';
+import Mypage from './pages/Mypage/Mypage';
 
 export const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ export const AppRouter = () => {
       <Route path="/category" element={<CategorySelect />} />
       <Route path="/category/:categoryId" element={<SupplementList />} />
       <Route path="/supplement/:supplementId" element={<SupplementDetail />} />
+      <Route path="/mypage" element={<Mypage />} />
     </Routes>
   );
 };

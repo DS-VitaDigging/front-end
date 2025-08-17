@@ -9,10 +9,10 @@ const Signup = () => {
 
   const [form, setForm] = useState({
     id: '',
-    nickname: '',
+    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    passwordConfirm: '',
     birth: '',
     gender: '',
   });
@@ -34,7 +34,7 @@ const Signup = () => {
       }));
     }
 
-    if (name === 'confirmPassword') {
+    if (name === 'passwordConfirm') {
       setErrors((prev) => ({
         ...prev,
         passwordMatch: value !== form.password,
@@ -43,21 +43,29 @@ const Signup = () => {
   };
 
   const handleSignup = async () => {
+    if (errors.passwordFormat || errors.passwordMatch) {
+      alert('비밀번호를 확인해주세요.');
+      return;
+    }
+
     try {
       const signupData = {
-        username: form.id,
-        nickname: form.nickname,
+        id: form.id,
+        name: form.name,
         email: form.email,
         password: form.password,
+        passwordConfirm: form.passwordConfirm,
         birthYear: form.birth ? new Date(form.birth).getFullYear() : null,
         gender: form.gender === 'female' ? 'F' : form.gender === 'male' ? 'M' : 'O',
       };
 
-      const res = await axiosInstance.post('/api/users/signup', signupData);
+      const res = await axiosInstance.post('/api/member/signup', signupData);
       console.log(res.data);
+      alert('회원가입이 완료되었습니다.');
       navigate('/login');
     } catch (error) {
-      console.error(error);
+      console.error('회원가입 실패:', error);
+      alert('회원가입에 실패했습니다.');
     }
   };
 
@@ -76,7 +84,7 @@ const Signup = () => {
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>닉네임</label>
-        <input type="text" name="nickname" value={form.nickname} onChange={handleChange} css={styles.input} />
+        <input type="text" name="name" value={form.name} onChange={handleChange} css={styles.input} />
       </div>
 
       <div css={styles.fieldGroup}>
@@ -86,13 +94,27 @@ const Signup = () => {
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>비밀번호</label>
-        <input type="password" name="password" value={form.password} onChange={handleChange} css={styles.input} placeholder="비밀번호 형식에 대한 안내" />
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          css={styles.input}
+          placeholder="6자 이상의 영문자와 숫자 조합"
+        />
         {errors.passwordFormat && <p css={styles.warning}>비밀번호 형식이 일치하지 않습니다.</p>}
       </div>
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>비밀번호 확인</label>
-        <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} css={styles.input} placeholder="비밀번호를 다시 입력해 주세요" />
+        <input
+          type="password"
+          name="passwordConfirm"
+          value={form.passwordConfirm}
+          onChange={handleChange}
+          css={styles.input}
+          placeholder="비밀번호를 다시 입력해 주세요"
+        />
         {errors.passwordMatch && <p css={styles.warning}>비밀번호가 일치하지 않습니다.</p>}
       </div>
 

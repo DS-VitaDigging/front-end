@@ -1,21 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 import * as styles from './Login.style';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../apis/axiosInstance';
 
 const Login = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({ id: '', password: '' });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleLogin = async () => {
     try {
-      const res = await axiosInstance.post('/api/users/login', {
-        username: id,
-        password,
+      const res = await axiosInstance.post('/api/member/login', {
+        id: form.id,
+        password: form.password,
       });
-      console.log(res.data);
+
+      const { token } = res.data;
+      localStorage.setItem('accessToken', token);
+      navigate('/');
     } catch (error) {
-      console.error(error);
+      console.error('로그인 실패:', error);
+      alert('로그인에 실패했습니다.');
     }
   };
 
@@ -27,9 +37,10 @@ const Login = () => {
         <label htmlFor="id" css={styles.label}>아이디</label>
         <input
           id="id"
+          name="id"
           type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
+          value={form.id}
+          onChange={handleChange}
           css={styles.input}
         />
       </div>
@@ -38,16 +49,17 @@ const Login = () => {
         <label htmlFor="password" css={styles.label}>비밀번호</label>
         <input
           id="password"
+          name="password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           css={styles.input}
         />
       </div>
 
       <div css={styles.buttonGroup}>
         <button css={styles.loginButton} onClick={handleLogin}>로그인</button>
-        <button css={styles.signupButton}>회원가입</button>
+        <button css={styles.signupButton} onClick={() => navigate('/signup')}>회원가입</button>
       </div>
     </div>
   );

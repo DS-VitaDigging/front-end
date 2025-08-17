@@ -60,7 +60,7 @@ export const tagList = css`
 export const tagItem = css`
     font-size: 0.8rem;
     background-color: #A4B4658C;
-    padding: 0.4rem;
+    padding: 0.5rem 0.6rem;
     border-radius: 1.2rem;
     white-space: nowrap;
     flex-shrink: 0; 

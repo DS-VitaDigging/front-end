@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { carouselImages, ageTags, ageGroupMapping, carouselSettings } from '../../constants/homeData';
 import VitaCard from './VitaCard/VitaCard';
 import { getPopularProductsByAge } from '../../apis/Home/home';
+import { createTags } from '../../utils/tagUtils';
 
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');
@@ -29,27 +30,6 @@ const Home = () => {
     useEffect(() => {
         fetchPopularProducts(selectedTag);
     }, [selectedTag]);
-
-    const createTags = (product) => {
-        const tags = [];
-        
-        // 카테고리 추가
-        if (product.category) {
-            tags.push(product.category);
-        }
-        
-        // ingredients 처리 (쉼표로 분리 후 앞의 2개만)
-        if (product.ingredients) {
-            const ingredientList = product.ingredients
-                .split(',')
-                .map(ingredient => ingredient.trim())
-                .filter(ingredient => ingredient.length > 0)
-                .slice(0, 2); 
-            tags.push(...ingredientList);
-        }
-        
-        return tags.filter(Boolean).map(tag => `#${tag}`);
-    };
 
     return (
         <div css={styles.wrapper}>

@@ -78,7 +78,8 @@ const Home = () => {
                                     id: product.id,
                                     title: product.name,
                                     compony: product.manufacturer,
-                                    tags: [product.category, product.efficacy].filter(Boolean).map(tag => `#${tag}`)
+                                    image: product.image || product.imageUrl || "/images/dummy_pill.png",  // 🔥 이미지 추가
+                                    tags: [product.category, product.ingredients].filter(Boolean).map(tag => `#${tag}`)
                                 }} />
                             </div>
                         ))

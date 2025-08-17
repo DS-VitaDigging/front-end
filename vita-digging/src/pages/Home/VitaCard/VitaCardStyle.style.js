@@ -3,24 +3,35 @@ import { css } from '@emotion/react';
 export const cardBox = css`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
 
     border: none;
     border-radius: 2rem;
-    width: 14.5rem;
-    height: 18.4rem;
-    padding: 1.5rem;
+    width: 15rem;
+    height: 20.3rem;
+
+    padding: 2rem 1.5rem 1.7rem 1.5rem;
     background-color: #FEFAE0;
+    text-align: center;
+`;
+
+export const cardContent = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-start;
 `;
 
 export const cardImage = css`
-    width: 80%;
+    width: 90px;
 `;
 
 export const cardTitle = css`
     font-weight: bold;
     margin-bottom: 0.4rem;
+    margin-top: 1rem;
     font-size: 1.2rem;
 `;
 
@@ -34,7 +45,6 @@ export const tagList = css`
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
     align-self: flex-start;
 `;
 

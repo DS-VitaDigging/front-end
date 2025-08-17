@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
     padding: 2rem;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 `;
 
 export const title = css`
@@ -79,6 +80,7 @@ export const cardScrollContainer = css`
     display: flex;
     gap: 2rem;
     padding-bottom: 1rem;
+    height: 22rem;
     overflow-x: auto;
 
     -ms-overflow-style: none; /* IE, Edge */

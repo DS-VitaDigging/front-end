@@ -57,15 +57,7 @@ const Chat = () => {
         }
     }, [location.state]);
 
-    const goResult = () => {
-        navigate('/survey/results', { 
-            state: { 
-                chatMessages: messages,
-                finalGptResponse: finalGptResponse 
-            }
-        });
-    }
-
+    // 채팅 메시지 전송
     const handleSend = async (text) => {
         if (isProcessing || loading) {
             return;
@@ -118,6 +110,16 @@ const Chat = () => {
             setIsProcessing(false);
         }
     };
+
+    // result 페이지로 이동
+    const goResult = () => {
+        navigate('/survey/results', { 
+            state: { 
+                chatMessages: messages,
+                finalGptResponse: finalGptResponse 
+            }
+        });
+    }
 
     return (
         <div css={styles.wrapper}>

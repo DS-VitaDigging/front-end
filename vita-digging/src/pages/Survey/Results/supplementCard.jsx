@@ -9,13 +9,9 @@ const SupplementCard = ({ data, onClick }) => {
             </div>
             <div css={styles.infoBox}>
                 <p css={styles.name}>{data.name}</p>
-
                 {data.manufacturer && <p css={styles.manufacturer}>{data.manufacturer}</p>}
-
                 <div css={styles.tagList}>
-                    {data.category.map((tag, index) => (
-                        <span key={index} css={styles.tag}>{tag}</span>
-                    ))}
+                    <span css={styles.tag}>{data.category}</span>
                 </div>
             </div>
         </div>

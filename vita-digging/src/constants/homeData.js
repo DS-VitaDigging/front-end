@@ -1,7 +1,7 @@
 // 캐러셀 이미지
 export const carouselImages = [
-  '/images/banner1.png',
-  '/images/banner1.png',
+  '/images/banner2.jpg',
+  '/images/banner3.jpg',
   '/images/banner1.png',
 ];
 

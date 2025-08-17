@@ -12,9 +12,27 @@ export const chatContainer = css`
     flex-direction: column;
     max-height: 53rem;
     padding: 2rem;
-    padding-bottom: 12rem;
+    padding-bottom: 6rem;
     flex: 1;
     overflow-y: auto;
+    scroll-behavior: smooth; 
+    
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #CCCCCC;
+        border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: #AAAAAA;
+    }
 `;
 
 // 메시지 애니메이션
@@ -56,7 +74,7 @@ export const botMessage = css`
     &::before {
         content: '';
         position: absolute;
-        top: 1.5rem;
+        top: 1rem;
         left: -1rem;
         width: 0;
         height: 0;
@@ -74,7 +92,7 @@ export const userMessage = css`
     &::before {
         content: '';
         position: absolute;
-        top: 1.5rem;
+        top: 1rem;
         right: -1rem;
         width: 0;
         height: 0;
@@ -145,6 +163,76 @@ export const inputField = css`
     font-size: 1.3rem;
     height: 3.5rem;
     outline: none;
+    transition: all 0.2s ease;
+    
+    &:disabled {
+        background-color: #F5F5F5;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+    
+    &:focus:not(:disabled) {
+        border-color: #facc15;
+    }
+`;
+
+// 로딩 메시지 스타일
+export const loadingMessage = css`
+    ${messageBox}
+    background-color: #FFECBA;
+    align-self: flex-start;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 1rem;
+        left: -1rem;
+        width: 0;
+        height: 0;
+        border-top: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-right: 1.5rem solid #FFECBA;
+    }
+`;
+
+// 타이핑 인디케이터 애니메이션
+export const typingIndicator = css`
+    display: flex;
+    gap: 4px;
+    
+    span {
+        width: 8px;
+        height: 8px;
+        background-color: #999;
+        border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out;
+        
+        &:nth-of-type(1) {
+            animation-delay: 0s;
+        }
+        
+        &:nth-of-type(2) {
+            animation-delay: 0.2s;
+        }
+        
+        &:nth-of-type(3) {
+            animation-delay: 0.4s;
+        }
+    }
+    
+    @keyframes typing {
+        0%, 60%, 100% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        30% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+    }
 `;
 
 export const sendButton = css`
@@ -158,8 +246,15 @@ export const sendButton = css`
     width: 6.6rem;
     color: white;
     cursor: pointer;
+    transition: all 0.2s ease;
 
-    &:hover {
+    &:hover:not(:disabled) {
         color: #A4B465CC;
+    }
+    
+    &:disabled {
+        background-color: #CCCCCC;
+        cursor: not-allowed;
+        opacity: 0.6;
     }
 `;

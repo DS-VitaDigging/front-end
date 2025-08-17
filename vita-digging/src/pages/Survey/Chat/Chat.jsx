@@ -4,7 +4,7 @@ import ChatBotMessage from '../components/ChatBotMessage';
 import UserMessage from '../components/UserMessage';
 import ChatResultMessage from '../components/ChatResultMessage';
 import ChatInput from '../components/ChatInput';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';  
 import { useNavigate, useLocation } from 'react-router-dom';
 import { INITIAL_CHAT_MESSAGE } from '../../../constants/chatData';
 import CommonHeader from '../components/CommonHeader';
@@ -13,15 +13,27 @@ import { sendChatMessage, extractMessageFromResponse } from '../../../apis/Surve
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const chatContainerRef = useRef(null);  
+
+    // 채팅 자동 스크롤 
+    const scrollToBottom = () => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     // Survey에서 전달받은 초기 데이터 처리
     useEffect(() => {
         const { initialResponse, chatHistory } = location.state || {};
         
         if (initialResponse && chatHistory) {
-            // 실제 API 응답이 있는 경우
             const initialUserMessage = {
                 role: 'user',
                 content: INITIAL_CHAT_MESSAGE
@@ -34,26 +46,40 @@ const Chat = () => {
     }, [location.state]);
 
     const goResult = () => {
-        navigate('/survey/results');
+        navigate('/survey/results', { 
+            state: { 
+                chatMessages: messages
+            }
+        });
     }
 
     const handleSend = async (text) => {
+        if (isProcessing || loading) {
+            return;
+        }
+
+        setIsProcessing(true);
         const newUserMessage = { role: 'user', content: text };
-        const updatedMessages = [...messages, newUserMessage];
-        setMessages(updatedMessages);
+        
+        setMessages(prev => [...prev, newUserMessage]);
+
+        await new Promise(resolve => setTimeout(resolve, 600));
         
         setLoading(true);
+        
         try {
-            // 전체 메시지 전송
-            const response = await sendChatMessage(updatedMessages);
+            const messagesForAPI = [...messages, newUserMessage];
             
-            // 응답 추가
+            const response = await sendChatMessage(messagesForAPI);
             const botMessage = extractMessageFromResponse(response);
+            
             setMessages(prev => [...prev, botMessage]);
             
         } catch (error) {
             console.error('메시지 전송 실패:', error);
-            // 에러 시 임시 응답
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
             const errorMessage = {
                 role: 'assistant',
                 content: '죄송합니다. 일시적인 오류가 발생했습니다. 다시 시도해주세요.'
@@ -61,6 +87,7 @@ const Chat = () => {
             setMessages(prev => [...prev, errorMessage]);
         } finally {
             setLoading(false);
+            setIsProcessing(false);
         }
     };
 
@@ -68,16 +95,30 @@ const Chat = () => {
         <div css={styles.wrapper}>
             <CommonHeader />
 
-            <div css={styles.chatContainer}>
+            <div 
+                css={styles.chatContainer} 
+                ref={chatContainerRef} 
+            >
                 {messages.map((msg, idx) => {
                     if (msg.role === 'assistant') return <ChatBotMessage key={idx} message={msg.content} />;
                     if (msg.role === 'user') return <UserMessage key={idx} message={msg.content} />;
                     if (msg.role === 'result') return <ChatResultMessage key={idx} message={msg.content} onClick={goResult} />;
                 return null;
             })}
+                
+                {/* 로딩 중 표시 */}
+                {loading && (
+                    <div css={styles.loadingMessage}>
+                        <div css={styles.typingIndicator}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                )}
             </div>
 
-            <ChatInput onSend={handleSend} disabled={loading} />
+            <ChatInput onSend={handleSend} disabled={loading || isProcessing} />
         </div>
     );
 };

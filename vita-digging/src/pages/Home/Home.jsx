@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { carouselImages, ageTags, ageGroupMapping, carouselSettings } from '../../constants/homeData';
 import VitaCard from './VitaCard/VitaCard';
-import { getPopularProductsByAge } from '../../apis/Home/homeApi';
+import { getPopularProductsByAge } from '../../apis/Home/home';
 
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');

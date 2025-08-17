@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './resultPage.style';
-
 import { css } from '@emotion/react';
 
 const SupplementDetailModal = ({ data, onClose }) => {
@@ -15,7 +14,7 @@ const SupplementDetailModal = ({ data, onClose }) => {
                     </div>
                     <div css={styles.infoBox}>
                         <p css={styles.name}>{data.name}</p>
-                        {data.brand && <p css={styles.brand}>{data.brand}</p>}
+                        {data.manufacturer && <p css={styles.manufacturer}>{data.manufacturer}</p>}
                         
                         <button css={purchaseBtn}>최저가 구매</button>
                     </div>

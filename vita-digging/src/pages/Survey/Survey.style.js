@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
   padding: 2rem;
   margin-top: 5rem;
+  margin-bottom: 7rem;
 `;
 
 export const header = css`
@@ -23,7 +24,7 @@ export const card = css`
   background-color: #fefae0;
   border-radius: 2rem;
   padding: 5rem 4.5rem;
-  margin-top: 3.9rem;
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
 `;

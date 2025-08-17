@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
     padding: 2rem;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 `;
 
 export const title = css`

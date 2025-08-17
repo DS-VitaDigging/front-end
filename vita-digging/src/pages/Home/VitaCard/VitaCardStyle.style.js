@@ -44,8 +44,17 @@ export const cardCompany = css`
 export const tagList = css`
     display: flex;
     gap: 0.4rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-self: flex-start;
+    overflow-x: auto; 
+    width: 100%;
+    
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+    
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
 `;
 
 export const tagItem = css`
@@ -54,4 +63,5 @@ export const tagItem = css`
     padding: 0.4rem;
     border-radius: 1.2rem;
     white-space: nowrap;
+    flex-shrink: 0; 
 `;

@@ -11,12 +11,10 @@ import { getPopularProductsByAge } from '../../apis/Home/homeApi';
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     // 연령대별 인기 제품 조회
     const fetchPopularProducts = async (ageTag) => {
-        setLoading(true);
         setError(null);
         try {
             const ageGroupParam = ageGroupMapping[ageTag] || '20s';
@@ -24,8 +22,6 @@ const Home = () => {
             setProducts(data);
         } catch (err) {
             setError('제품 정보를 불러오는데 실패했습니다.');
-        } finally {
-            setLoading(false);
         }
     };
 

@@ -5,7 +5,7 @@ import * as styles from './Survey.style';
 import { useState, useEffect } from 'react';
 import { sendChatMessage, sendBodyInfo } from '../../apis/Survey/chat';
 import { INITIAL_CHAT_MESSAGE } from '../../constants/chatData';
-import { getUserProfile } from '../../apis/Mypage/profileApi';
+import { getUserProfile } from '../../apis/Mypage/profile';
 
 const Survey = () => {
     const [height, setHeight] = useState('');
@@ -81,7 +81,7 @@ const Survey = () => {
 
                 <div css={styles.row}>
                     <span css={styles.label}>성별</span>
-                    {/* <span css={styles.value}>{userProfile.gender}</span>  */}
+                    <span css={styles.value}>{userProfile.gender}</span> 
                 </div>
 
                 <div css={styles.row}>

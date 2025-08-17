@@ -88,12 +88,9 @@ const Home = () => {
 
                 {/* 영양제 카드 */}
                 <div css={styles.cardScrollContainer}>
-                    {loading ? (
-                        <div>로딩 중...</div>
-                    ) : error ? (
+                    {error ? (
                         <div css={styles.errorMessage}>{error}</div>
-                    ) : (
-                        products.map(product => (
+                    ) : products.map(product => (
                             <div key={product.id}>
                                 <VitaCard card={{
                                     id: product.id,
@@ -103,8 +100,7 @@ const Home = () => {
                                     tags: createTags(product)
                                 }} />
                             </div>
-                        ))
-                    )}
+                    ))}
                 </div>
             </div>
         </div>

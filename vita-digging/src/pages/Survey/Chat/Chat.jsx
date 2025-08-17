@@ -14,9 +14,20 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [finalGptResponse, setFinalGptResponse] = useState(null); 
     const navigate = useNavigate();
     const location = useLocation();
     const chatContainerRef = useRef(null);  
+
+    // vitamins JSON 형태인지 확인 (마지막 채팅인지)
+    const isVitaminsResponse = (content) => {
+        try {
+            const parsed = JSON.parse(content);
+            return parsed.vitamins && Array.isArray(parsed.vitamins);
+        } catch {
+            return false;
+        }
+    };
 
     // 채팅 자동 스크롤 
     const scrollToBottom = () => {
@@ -38,6 +49,7 @@ const Chat = () => {
                 role: 'user',
                 content: INITIAL_CHAT_MESSAGE
             };
+
             const botResponse = extractMessageFromResponse(initialResponse);
             setMessages([initialUserMessage, botResponse]);
         } else {
@@ -48,7 +60,8 @@ const Chat = () => {
     const goResult = () => {
         navigate('/survey/results', { 
             state: { 
-                chatMessages: messages
+                chatMessages: messages,
+                finalGptResponse: finalGptResponse 
             }
         });
     }
@@ -73,7 +86,22 @@ const Chat = () => {
             const response = await sendChatMessage(messagesForAPI);
             const botMessage = extractMessageFromResponse(response);
             
-            setMessages(prev => [...prev, botMessage]);
+            // 마지막 채팅인지 확인
+            if (isVitaminsResponse(botMessage.content)) {
+                // 원문 저장
+                setFinalGptResponse(response);
+                
+                // result 메시지로 
+                const resultMessage = {
+                    role: 'result'
+                };
+                
+                setMessages(prev => [...prev, resultMessage]);
+                setIsProcessing(true);  // 더 이상 입력 불가
+            } else {
+                // 일반 챗봇 메시지
+                setMessages(prev => [...prev, botMessage]);
+            }
             
         } catch (error) {
             console.error('메시지 전송 실패:', error);
@@ -102,7 +130,7 @@ const Chat = () => {
                 {messages.map((msg, idx) => {
                     if (msg.role === 'assistant') return <ChatBotMessage key={idx} message={msg.content} />;
                     if (msg.role === 'user') return <UserMessage key={idx} message={msg.content} />;
-                    if (msg.role === 'result') return <ChatResultMessage key={idx} message={msg.content} onClick={goResult} />;
+                    if (msg.role === 'result') return <ChatResultMessage key={idx} onClick={goResult} />;
                 return null;
             })}
                 

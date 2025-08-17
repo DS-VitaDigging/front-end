@@ -66,7 +66,7 @@ export const extractMessageFromResponse = (apiResponse) => {
     // 메시지 추출
     return {
       role: 'assistant',
-      content: message.content
+      content: message.content,
     };
   }
   throw new Error('잘못된 API 응답 형식');

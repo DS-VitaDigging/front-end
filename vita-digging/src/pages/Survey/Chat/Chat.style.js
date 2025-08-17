@@ -4,7 +4,7 @@ export const wrapper = css`
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    margin-top: rem;
+    margin-top: 5rem;
 `;
 
 export const chatContainer = css`
@@ -12,10 +12,11 @@ export const chatContainer = css`
     flex-direction: column;
     max-height: 53rem;
     padding: 2rem;
-    padding-bottom: 6rem;
+    padding-bottom: 8rem;
     flex: 1;
     overflow-y: auto;
     scroll-behavior: smooth; 
+    margin-top: 2.5rem;
     
     &::-webkit-scrollbar {
         width: 6px;
@@ -122,10 +123,6 @@ export const resultMessage = css`
     }
 `;
 
-export const boldText = css`
-    font-weight: bold;
-`;
-
 export const resultButton = css`
     margin-top: 1rem;
     padding: 1.3rem 4rem;
@@ -147,7 +144,7 @@ export const inputWrapper = css`
     padding: 1.5rem 2rem;
     background-color: white;
     position: fixed;
-    bottom: 7rem; 
+    bottom: 5rem; 
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -257,4 +254,67 @@ export const sendButton = css`
         cursor: not-allowed;
         opacity: 0.6;
     }
+`;
+
+// result 메시지 컨테이너
+export const resultContainer = css`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const firstResultMessage = css`
+    ${messageBox}
+    background-color: #FFECBA;
+    align-self: flex-start;
+    animation: slideUp 0.3s ease-out;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        left: -1rem;
+        width: 0;
+        height: 0;
+        border-top: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-right: 1.5rem solid #FFECBA;
+    }
+`;
+
+export const secondResultMessage = css`
+    ${messageBox}
+    background-color: #FFECBA;
+    align-self: flex-start;
+    animation: slideUp 0.3s ease-out 0.5s both; 
+    margin-bottom: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        left: -1rem;
+        width: 0;
+        height: 0;
+        border-top: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-right: 1.5rem solid #FFECBA;
+    }
+`;
+
+export const resultTitle = css`
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.3rem;
+`;
+
+export const resultDesc = css`
+    font-size: 1.3rem;
+    color: #626F47;
+    margin: 0;
+`;
+
+export const resultButtonContainer = css`
+    display: flex;
+    justify-content: center;
 `;

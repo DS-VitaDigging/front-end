@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import * as styles from './Signup.style';
 import { useNavigate } from 'react-router-dom';
+import { signupUser } from '../../apis/auth';
 
 const Signup = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    id: '',
     nickname: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -29,7 +30,7 @@ const Signup = () => {
     if (name === 'password') {
       setErrors((prev) => ({
         ...prev,
-        passwordFormat: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value), //영문자 숫자 조합으로 6자 이상!
+        passwordFormat: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value),
       }));
     }
 
@@ -41,8 +42,32 @@ const Signup = () => {
     }
   };
 
-  const handleSignup = () => {
-    console.log('회원가입 정보:', form);
+  const handleSignup = async () => {
+    const { nickname, username, email, password, confirmPassword, birth, gender } = form;
+
+    if (errors.passwordFormat || errors.passwordMatch) {
+      alert('비밀번호를 확인해주세요.');
+      return;
+    }
+
+    const birthYear = parseInt(birth?.split('-')[0], 10);
+
+    try {
+      await signupUser({
+        nickname,
+        username,
+        password,
+        email,
+        birthYear,
+        gender,
+      });
+
+      alert('회원가입이 완료되었습니다.');
+      navigate('/login');
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+      alert('회원가입에 실패했습니다.');
+    }
   };
 
   return (
@@ -55,7 +80,7 @@ const Signup = () => {
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>아이디</label>
-        <input type="text" name="id" value={form.id} onChange={handleChange} css={styles.input} />
+        <input type="text" name="username" value={form.username} onChange={handleChange} css={styles.input} />
       </div>
 
       <div css={styles.fieldGroup}>
@@ -70,13 +95,27 @@ const Signup = () => {
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>비밀번호</label>
-        <input type="password" name="password" value={form.password} onChange={handleChange} css={styles.input} placeholder="비밀번호 형식에 대한 안내" />
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          css={styles.input}
+          placeholder="6자 이상의 영문자와 숫자 조합"
+        />
         {errors.passwordFormat && <p css={styles.warning}>비밀번호 형식이 일치하지 않습니다.</p>}
       </div>
 
       <div css={styles.fieldGroup}>
         <label css={styles.label}>비밀번호 확인</label>
-        <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} css={styles.input} placeholder="비밀번호를 다시 입력해 주세요" />
+        <input
+          type="password"
+          name="confirmPassword"
+          value={form.confirmPassword}
+          onChange={handleChange}
+          css={styles.input}
+          placeholder="비밀번호를 다시 입력해 주세요"
+        />
         {errors.passwordMatch && <p css={styles.warning}>비밀번호가 일치하지 않습니다.</p>}
       </div>
 
@@ -90,16 +129,15 @@ const Signup = () => {
         <label css={styles.label}>성별</label>
         <p css={styles.description}>더 알맞는 영양제 추천을 위해서 성별을 입력해 주세요!</p>
         <div css={styles.genderGroup}>
-        <input type="radio" id="female" name="gender" value="female" onChange={handleChange} checked={form.gender === 'female'} />
-        <label htmlFor="female">여자</label>
+          <input type="radio" id="female" name="gender" value="F" onChange={handleChange} checked={form.gender === 'F'} />
+          <label htmlFor="female">여자</label>
 
-        <input type="radio" id="male" name="gender" value="male" onChange={handleChange} checked={form.gender === 'male'} />
-        <label htmlFor="male">남자</label>
+          <input type="radio" id="male" name="gender" value="M" onChange={handleChange} checked={form.gender === 'M'} />
+          <label htmlFor="male">남자</label>
 
-        <input type="radio" id="other" name="gender" value="other" onChange={handleChange} checked={form.gender === 'other'} />
-        <label htmlFor="other">기타</label>
+          <input type="radio" id="other" name="gender" value="O" onChange={handleChange} checked={form.gender === 'O'} />
+          <label htmlFor="other">기타</label>
         </div>
-
       </div>
 
       <button css={styles.signupButton} onClick={handleSignup}>회원가입</button>

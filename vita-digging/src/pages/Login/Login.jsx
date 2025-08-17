@@ -1,13 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 import * as styles from './Login.style';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../apis/auth';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log('로그인 시도:', id, password);
+  const handleLogin = async () => {
+    try {
+      const res = await loginUser({ id, password });
+      const token = res.token;
+
+      localStorage.setItem('accessToken', token);
+      navigate('/');
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      alert('로그인에 실패했습니다.');
+    }
   };
 
   return (
@@ -38,7 +50,7 @@ const Login = () => {
 
       <div css={styles.buttonGroup}>
         <button css={styles.loginButton} onClick={handleLogin}>로그인</button>
-        <button css={styles.signupButton}>회원가입</button>
+        <button css={styles.signupButton} onClick={() => navigate('/signup')}>회원가입</button>
       </div>
     </div>
   );

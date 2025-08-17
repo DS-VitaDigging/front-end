@@ -1,7 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from '../Mypage.style';
+import axiosInstance from '../../../apis/axiosInstance';
 
-const NicknamePopup = ({ nickname, onChange, onClose }) => {
+const NicknamePopup = ({ nickname, onChange, onClose, userId }) => {
+  const handleConfirm = async () => {
+    try {
+      await axiosInstance.patch(`/api/users/${userId}/nickname`, {
+        nickname,
+      });
+      onClose();
+    } catch (error) {
+      console.error('닉네임 변경 실패:', error);
+    }
+  };
+
   return (
     <div css={styles.popupOverlay}>
       <div css={styles.popup}>
@@ -14,7 +26,7 @@ const NicknamePopup = ({ nickname, onChange, onClose }) => {
           onChange={onChange}
           css={styles.popupInput}
         />
-        <button css={styles.popupButton} onClick={onClose}>확인</button>
+        <button css={styles.popupButton} onClick={handleConfirm}>확인</button>
       </div>
     </div>
   );

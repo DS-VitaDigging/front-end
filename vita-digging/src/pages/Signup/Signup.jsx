@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import * as styles from './Signup.style';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../apis/axiosInstance';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Signup = () => {
     if (name === 'password') {
       setErrors((prev) => ({
         ...prev,
-        passwordFormat: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value), //영문자 숫자 조합으로 6자 이상!
+        passwordFormat: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value),
       }));
     }
 
@@ -41,8 +42,23 @@ const Signup = () => {
     }
   };
 
-  const handleSignup = () => {
-    console.log('회원가입 정보:', form);
+  const handleSignup = async () => {
+    try {
+      const signupData = {
+        username: form.id,
+        nickname: form.nickname,
+        email: form.email,
+        password: form.password,
+        birthYear: form.birth ? new Date(form.birth).getFullYear() : null,
+        gender: form.gender === 'female' ? 'F' : form.gender === 'male' ? 'M' : 'O',
+      };
+
+      const res = await axiosInstance.post('/api/users/signup', signupData);
+      console.log(res.data);
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -90,16 +106,15 @@ const Signup = () => {
         <label css={styles.label}>성별</label>
         <p css={styles.description}>더 알맞는 영양제 추천을 위해서 성별을 입력해 주세요!</p>
         <div css={styles.genderGroup}>
-        <input type="radio" id="female" name="gender" value="female" onChange={handleChange} checked={form.gender === 'female'} />
-        <label htmlFor="female">여자</label>
+          <input type="radio" id="female" name="gender" value="female" onChange={handleChange} checked={form.gender === 'female'} />
+          <label htmlFor="female">여자</label>
 
-        <input type="radio" id="male" name="gender" value="male" onChange={handleChange} checked={form.gender === 'male'} />
-        <label htmlFor="male">남자</label>
+          <input type="radio" id="male" name="gender" value="male" onChange={handleChange} checked={form.gender === 'male'} />
+          <label htmlFor="male">남자</label>
 
-        <input type="radio" id="other" name="gender" value="other" onChange={handleChange} checked={form.gender === 'other'} />
-        <label htmlFor="other">기타</label>
+          <input type="radio" id="other" name="gender" value="other" onChange={handleChange} checked={form.gender === 'other'} />
+          <label htmlFor="other">기타</label>
         </div>
-
       </div>
 
       <button css={styles.signupButton} onClick={handleSignup}>회원가입</button>

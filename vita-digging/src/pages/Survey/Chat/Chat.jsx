@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { INITIAL_CHAT_MESSAGE } from '../../../constants/chatData';
 import CommonHeader from '../components/CommonHeader';
-import { sendChatMessage, extractMessageFromResponse } from '../../../api/chat';
+import { sendChatMessage, extractMessageFromResponse } from '../../../apis/Survey/chat';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);

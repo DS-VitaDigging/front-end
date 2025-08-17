@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CommonHeader from './components/CommonHeader';
 import * as styles from './Survey.style';
 import { useState } from 'react';
-import { sendChatMessage, sendBodyInfo } from '../../api/chat';
+import { sendChatMessage, sendBodyInfo } from '../../apis/Survey/chat';
 import { INITIAL_CHAT_MESSAGE } from '../../constants/chatData';
 
 

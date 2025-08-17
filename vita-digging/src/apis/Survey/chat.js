@@ -1,4 +1,4 @@
-import axiosInstance from '../apis/axiosInstance';
+import axiosInstance from '../axiosInstance';
 
 /* 신체 정보 전송 */
 export const sendBodyInfo = async (bodyInfo) => {

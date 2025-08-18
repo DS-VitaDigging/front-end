@@ -15,6 +15,8 @@ export default function Header() {
         alert('로그아웃 되었습니다.');
         localStorage.removeItem('accessToken');
         setIsLoggedIn(false);
+        
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -47,12 +49,13 @@ const headerWrapper = css`
     top: 0;
     z-index: 20;
     background-color: ${theme.colors['color-sub1']};
-`
+`;
 
 const logoImg = css`
     width: 22rem;
     height: 2.4rem;
-`
+`;
+
 const logoutButton = css`
     position: absolute;
     right: 10px;
@@ -60,4 +63,4 @@ const logoutButton = css`
     background: none;
     border: none;
     cursor: pointer;
-`
+`;

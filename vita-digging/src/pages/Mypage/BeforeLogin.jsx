@@ -23,6 +23,7 @@ const message = css`
   font-size: 2.2rem;
   white-space: pre-line;
   margin-top:1.5rem;
+  line-height: 1.3;
 `;
 
 const button = css`

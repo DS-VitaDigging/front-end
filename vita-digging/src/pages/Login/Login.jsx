@@ -22,6 +22,7 @@ const Login = () => {
 
       const { token } = res.data.data;
       localStorage.setItem('accessToken', token);
+      alert('로그인 성공');
       navigate('/');
     } catch (error) {
       console.error('로그인 실패:', error);

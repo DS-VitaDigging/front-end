@@ -13,7 +13,7 @@ export const title = css`
 `;
 
 export const plainText = css`
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 `
 
 export const cardList = css`
@@ -30,21 +30,25 @@ export const cardList = css`
 export const cardWrapper = css`
     display: flex;
     padding: 1.5rem;
-    min-height: 15rem;
+    height: 20rem;
 `;
 
 export const imageBox = css`
     display: flex;
     align-items: center;
     margin-right: 2.7rem;
-    width: 12rem;
-    cover no-repeat;
+    width: 13rem;
+    height: 14rem;
     cursor: pointer;
+    flex-shrink: 0; 
 `;
 
 export const supplementImage = css`
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
     background-color: white;
     border-radius: 2rem;
     border: 1px solid #626F47;
@@ -63,7 +67,7 @@ export const name = css`
     font-weight: bold;
 `;
 
-export const brand = css`
+export const manufacturer = css`
     font-size: 1.3rem;
     color: #00000080;
     font-weight: bold;
@@ -84,4 +88,23 @@ export const tag = css`
     padding: 0.5rem 1.1rem;
     border-radius: 2rem;
     white-space: nowrap;
+`;
+
+export const loadingContainer = css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20rem;
+    font-size: 1.2rem;
+    color: #666;
+`;
+
+export const errorContainer = css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20rem;
+    font-size: 1.1rem;
+    color: #ff4444;
+    text-align: center;
 `;

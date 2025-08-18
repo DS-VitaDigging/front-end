@@ -9,7 +9,7 @@ export const cardBox = css`
     border: none;
     border-radius: 2rem;
     width: 15rem;
-    height: 20.3rem;
+    height: 21rem;
 
     padding: 2rem 1.5rem 1.7rem 1.5rem;
     background-color: #FEFAE0;
@@ -60,7 +60,7 @@ export const tagList = css`
 export const tagItem = css`
     font-size: 0.8rem;
     background-color: #A4B4658C;
-    padding: 0.4rem;
+    padding: 0.5rem 0.6rem;
     border-radius: 1.2rem;
     white-space: nowrap;
     flex-shrink: 0; 

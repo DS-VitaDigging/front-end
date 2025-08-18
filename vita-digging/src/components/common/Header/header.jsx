@@ -1,19 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(() => {
         const token = localStorage.getItem('accessToken');
         return !!token;
     });
+    const location = useLocation();
 
     const handleLogout = () => {
         alert('로그아웃 되었습니다.');
         localStorage.removeItem('accessToken');
         setIsLoggedIn(false);
     };
+
+    useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem('accessToken'));
+    }, [location.pathname]);
 
     return (
         <header css={headerWrapper}>

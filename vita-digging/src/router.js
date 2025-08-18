@@ -12,22 +12,33 @@ import CategorySelect from './pages/Category/CategorySelect';
 import SupplementList from './pages/Category/SupplementList';
 import SupplementDetail from './pages/Category/SupplementDetail';
 import Mypage from './pages/Mypage/Mypage';
+import ProtectedRoute from './routes/ProtectedRoute';
+import PublicRoute from './routes/PublicRoute';
 
 export const AppRouter = () => {
   return (
     <Routes>
+      {/* 공개 페이지 */}
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/beforeLogin" element={<BeforeLogin />} />
-      <Route path="/survey" element={<Survey />} />
-      <Route path="/survey/chat" element={<Chat />} />
-      <Route path="/survey/chat/list" element={<ChatList />} />
-      <Route path="/survey/results" element={<ResultPage />} />
+      <Route path="/before-login" element={<BeforeLogin />} />
+
+      {/* 비로그인 전용 */}
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+
+      {/* 카테고리 관련 */}
       <Route path="/category" element={<CategorySelect />} />
       <Route path="/category/:categoryId" element={<SupplementList />} />
       <Route path="/supplement/:supplementId" element={<SupplementDetail />} />
-      <Route path="/mypage" element={<Mypage />} />
+
+      {/* 보호 라우트: 로그인 필요 */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/survey/chat" element={<Chat />} />
+        <Route path="/survey/chat/list" element={<ChatList />} />
+        <Route path="/survey/results" element={<ResultPage />} />
+        <Route path="/mypage" element={<Mypage />} />
+      </Route>
     </Routes>
   );
 };

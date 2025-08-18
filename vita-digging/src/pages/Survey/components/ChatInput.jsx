@@ -2,13 +2,19 @@
 import * as styles from '../Chat/Chat.style';
 import { useState } from 'react';
 
-const ChatInput = ({ onSend }) => {
+const ChatInput = ({ onSend, disabled }) => {
     const [text, setText] = useState('');
 
     const handleSend = () => {
-        if (text.trim()) {
+        if (text.trim() && !disabled) { 
             onSend(text);
             setText('');
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && !disabled) { 
+            handleSend();
         }
     };
 
@@ -20,9 +26,16 @@ const ChatInput = ({ onSend }) => {
                 value={text}
                 placeholder="메시지를 입력하세요..."
                 onChange={(e) => setText(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                onKeyDown={handleKeyDown}
+                disabled={disabled} 
             />
-            <button css={styles.sendButton} onClick={handleSend}>전송</button>
+            <button 
+                css={styles.sendButton} 
+                onClick={handleSend}
+                disabled={disabled}  
+            >
+                전송
+            </button>
         </div>
     );
 };

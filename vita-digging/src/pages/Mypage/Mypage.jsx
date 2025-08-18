@@ -17,9 +17,8 @@ const Mypage = () => {
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    // ✅ useEffect는 항상 실행됨
     if (!token) {
-      setLoading(false); // 토큰 없으면 API 호출 안 하고 로딩 false
+      setLoading(false);
       return;
     }
 
@@ -45,7 +44,6 @@ const Mypage = () => {
     fetchUserData();
   }, [token]);
 
-  // ✅ 렌더링 분기
   if (!token) {
     return <BeforeLogin />;
   }
@@ -68,9 +66,6 @@ const Mypage = () => {
             <img src="/icons/change_nickname.svg" alt="닉네임 수정" />
           </button>
         </div>
-        <button css={styles.logoutButton}>
-          <img src="/icons/logout.svg" alt="로그아웃" />
-        </button>
       </section>
 
       <section css={styles.infoSection}>

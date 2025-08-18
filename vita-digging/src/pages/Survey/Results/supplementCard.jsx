@@ -5,17 +5,13 @@ const SupplementCard = ({ data, onClick }) => {
     return (
         <div css={styles.cardWrapper} onClick={onClick}>
             <div css={styles.imageBox}>
-                <img src={data.image} alt={data.name} css={styles.supplementImage} />
+                <img src={data.image_url} alt={data.name} css={styles.supplementImage} />
             </div>
             <div css={styles.infoBox}>
                 <p css={styles.name}>{data.name}</p>
-
-                {data.brand && <p css={styles.brand}>{data.brand}</p>}
-
+                {data.manufacturer && <p css={styles.manufacturer}>{data.manufacturer}</p>}
                 <div css={styles.tagList}>
-                    {data.tags.map((tag, index) => (
-                        <span key={index} css={styles.tag}>{tag}</span>
-                    ))}
+                    <span css={styles.tag}>{data.category}</span>
                 </div>
             </div>
         </div>

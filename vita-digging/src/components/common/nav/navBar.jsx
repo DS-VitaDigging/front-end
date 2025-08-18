@@ -4,11 +4,17 @@ import * as styles from './navBar.style';
 import { NAV_ITEMS } from '../../../constants/navItems';
 
 export default function NavBar() {
+
     return (
         <nav css={styles.navContainer}>
             {NAV_ITEMS.map((item) => (
-                <Link to={item.path} key={item.id} css={styles.navItem} style={{ textDecoration: "none"}}>
-                    <div key={item.id} css={styles.navItem}>
+                <Link 
+                    to={item.path}
+                    key={item.id} 
+                    css={styles.navItem} 
+                    style={{ textDecoration: "none"}}
+                >
+                    <div css={styles.navItem}>
                         <img
                             src={item.icon}
                             alt={item.name}

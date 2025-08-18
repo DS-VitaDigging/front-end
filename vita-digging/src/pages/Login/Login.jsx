@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import * as styles from './Login.style';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../apis/axiosInstance';
 
 const Login = () => {
   const [form, setForm] = useState({ id: '', password: '' });
@@ -14,16 +15,14 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/member/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      const res = await axiosInstance.post('/api/member/login', {
+        id: form.id,
+        password: form.password,
       });
 
-      if (!response.ok) throw new Error('로그인 요청 실패');
-
-      const data = await response.json();
-      localStorage.setItem('accessToken', data.token);
+      const { token } = res.data.data;
+      localStorage.setItem('accessToken', token);
+      alert('로그인 성공');
       navigate('/');
     } catch (error) {
       console.error('로그인 실패:', error);

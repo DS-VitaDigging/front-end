@@ -16,17 +16,18 @@ const CategorySelect = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState([]);
 
-  const handleSelect = (key) => {
-    if (selected.includes(key)) {
-      setSelected(selected.filter((k) => k !== key));
-    } else if (selected.length < 3) {
-      setSelected([...selected, key]);
-    }
-  };
+const handleSelect = (key) => {
+  if (selected.includes(key)) {
+    setSelected([]);
+  } else {
+    setSelected([key]);
+  }
+};
+
 
   const handleComplete = () => {
     if (selected.length > 0) {
-      navigate(`/category/${selected.join(',')}`);
+      navigate(`/category/${selected[0]}`);
     }
   };
 
@@ -34,7 +35,6 @@ const CategorySelect = () => {
     <div css={styles.wrapper}>
       <div css={styles.textGroup}>
         <div css={styles.title}>원하는 건강 카테고리를 선택해주세요</div>
-        <div css={styles.subtitle}>최대 3개 선택 가능</div>
       </div>
       <div css={styles.grid}>
         {categories.map(({ key, label, icon }) => (

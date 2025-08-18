@@ -41,17 +41,6 @@ export const editButton = css`
   }
 `;
 
-export const logoutButton = css`
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
 export const infoSection = css`
   margin-bottom: 4rem;
 `;

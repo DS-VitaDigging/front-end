@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './resultPage.style';
-
 import { css } from '@emotion/react';
 
 const SupplementDetailModal = ({ data, onClose }) => {
@@ -11,32 +10,32 @@ const SupplementDetailModal = ({ data, onClose }) => {
 
                 <div css={headerRow}>
                     <div css={styles.imageBox}>
-                        <img src={data.image} alt={data.name} css={styles.supplementImage} />
+                        <img src={data.imageUrl} alt={data.name} css={styles.supplementImage} />
                     </div>
                     <div css={styles.infoBox}>
                         <p css={styles.name}>{data.name}</p>
-                        {data.brand && <p css={styles.brand}>{data.brand}</p>}
+                        {data.manufacturer && <p css={styles.manufacturer}>{data.manufacturer}</p>}
                         
-                        <button css={purchaseBtn}>최저가 구매</button>
+                        <button onClick={() => window.open(data.purchaseLink, '_blank')} css={purchaseBtn}>
+                            최저가 구매
+                        </button>
                     </div>
                 </div>
 
-                <div>
+                <div css={contentBox}>
                     <p css={sectionTitle}>성분</p>
                     <p css={text}>{data.ingredients}</p>
 
                     <p css={sectionTitle}>효능</p>
-                    <div css={styles.tagList}>
-                        {data.tags.map((tagItem, idx) => (
-                        <span key={idx} css={styles.tag}>{tagItem}</span>
-                        ))}
+                    <div css={tagList}>
+                        <span css={tag}>{data.efficacy}</span>
                     </div>
 
                     <p css={sectionTitle}>복용법</p>
-                    <p css={text}>{data.intake}</p>
+                    <p css={text}>{data.instructions}</p>
 
                     <p css={sectionTitle}>주의사항</p>
-                    <p css={text}>{data.caution}</p>
+                    <p css={text}>{data.precautions}</p>
                 </div>
             </div>
         </div>
@@ -62,7 +61,7 @@ const overlay = css`
 const modalBox = css`
     background-color: #FEFAE0;
     border-radius: 2rem;
-    padding: 2rem;
+    padding: 2rem 3.5rem 3rem 3.5rem;
     width: 34rem;
     position: relative;
 
@@ -81,7 +80,7 @@ const closeIcon = css`
 const headerRow = css`
     display: flex;
     align-items: center;
-    margin-top: 1.4rem;
+    margin-top: 3rem;
     margin-bottom: 3.5rem;
 `;
 
@@ -102,14 +101,35 @@ const purchaseBtn = css`
     }
 `;
 
+const contentBox = css`
+
+`;
+
 const sectionTitle = css`
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 0.5rem;
 `;
 
 const text = css`
     font-size: 1.3rem;
     line-height: 1.5;
+`;
+
+const tagList = css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; 
+    margin-top: 1.7rem;
+    width: 100%;
+`;
+
+const tag = css`
+    font-size: 1.2rem;
+    background-color: #A4B465CC;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    width: 100%;
 `;

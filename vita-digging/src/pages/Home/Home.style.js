@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
     padding: 2rem;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 `;
 
 export const title = css`
@@ -13,7 +14,7 @@ export const title = css`
 `;
 
 export const carouselStyle = css`
-    margin: 3rem 0;
+    margin: 2.5rem 0;
 
     .slick-dots {
         position: absolute;
@@ -49,7 +50,7 @@ export const sectionWrapper = css`
 export const sectionTitle = css`
     font-weight: bold;
     font-size: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
 `;
 
 export const tagContainer = css`
@@ -88,5 +89,7 @@ export const cardScrollContainer = css`
     }
 `;
 
-
-
+export const errorMessage = css`
+    font-size: 1rem;
+    color: red;
+`;

@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
   padding: 6rem;
   margin-top: 5.9rem;
+  margin-bottom: 5rem;
   overflow: hidden;
   position: relative;
 `;
@@ -36,23 +37,23 @@ export const label = css`
   display: block;
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: #333;
 `;
 
 export const description = css`
   font-size: 1rem;
   color: #888;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 `;
 
 export const input = css`
   width: 100%;
-  padding: 0.8rem;
+  height: 4.1rem;
+  padding: 1rem;
   border: 1px solid #626f47;
   border-radius: 5px;
-  font-size: 1rem;
-  background-color: #d9d9d9;
+  font-size: 1.5rem;
 
   &:focus {
     background-color: #f5f5f5;
@@ -61,9 +62,9 @@ export const input = css`
 `;
 
 export const warning = css`
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: #A4B465;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 `;
 
 export const genderGroup = css`
@@ -96,8 +97,9 @@ export const genderGroup = css`
 
 export const signupButton = css`
   margin-top: 2rem;
+  height: 4.3rem;
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   background-color: #626F47;
   color: white;
   border: none;

@@ -5,7 +5,7 @@ const SupplementCard = ({ data, onClick }) => {
     return (
         <div css={styles.cardWrapper} onClick={onClick}>
             <div css={styles.imageBox}>
-                <img src={data.imageUrl} alt={data.name} css={styles.supplementImage} />
+                <img src={data.image_url} alt={data.name} css={styles.supplementImage} />
             </div>
             <div css={styles.infoBox}>
                 <p css={styles.name}>{data.name}</p>

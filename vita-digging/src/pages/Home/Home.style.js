@@ -14,7 +14,7 @@ export const title = css`
 `;
 
 export const carouselStyle = css`
-    margin: 3rem 0;
+    margin: 2.5rem 0;
 
     .slick-dots {
         position: absolute;
@@ -50,7 +50,7 @@ export const sectionWrapper = css`
 export const sectionTitle = css`
     font-weight: bold;
     font-size: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
 `;
 
 export const tagContainer = css`

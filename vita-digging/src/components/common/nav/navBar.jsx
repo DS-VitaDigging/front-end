@@ -31,7 +31,6 @@ export default function NavBar() {
     const getNavPath = (item) => {
         if (item.id === 'my') {
             const path = isLoggedIn ? '/mypage' : '/before-login';
-            console.log('🔍 내 프로필 경로:', path, '로그인 상태:', isLoggedIn);
             return path;
         }
         return item.path;

@@ -1,8 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
+import { useState } from 'react';
 
 export default function Header() {
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        const token = localStorage.getItem('accessToken');
+        return !!token;
+    });
+
+    const handleLogout = () => {
+        alert('로그아웃 되었습니다.');
+        localStorage.removeItem('accessToken');
+        setIsLoggedIn(false);
+    };
+
     return (
         <header css={headerWrapper}>
             <img
@@ -10,6 +22,11 @@ export default function Header() {
                 alt="헤더 로고"
                 css={logoImg}
             />
+            {isLoggedIn && (
+                <button css={logoutButton} onClick={handleLogout}>
+                    <img src="/icons/logout.svg" alt="로그아웃" />
+                </button>
+            )}
         </header>
     );
 }
@@ -29,4 +46,12 @@ const headerWrapper = css`
 const logoImg = css`
     width: 22rem;
     height: 2.4rem;
+`
+const logoutButton = css`
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
 `

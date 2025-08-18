@@ -14,13 +14,13 @@ const container = css`
 `;
 
 const iconStyle = css`
-  width: 180px;
-  height: 180px;
+  width: 156px;
+  height: 156px;
 `;
 
 const message = css`
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 2.2rem;
   white-space: pre-line;
   margin-top:1.5rem;
 `;
@@ -29,13 +29,15 @@ const button = css`
   background-color: #FFCF50;
   color: black;
   border: none;
-  border-radius: 8px;
-  padding: 0.8rem 2rem;
+  border-radius: 20px;
+  padding: 1.6rem 2rem;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top:0.5rem;
+  margin-top: 2.5rem;
+  width: 21.8rem;
+  height: 5.7rem;
 
   &:hover {
     background-color: #f5b800;

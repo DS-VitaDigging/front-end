@@ -7,7 +7,7 @@ import SupplementDetailModal from './resultDetailModal';
 import { getRecommendedResult } from '../../../apis/Survey/result';
 import { getDetailSupplement } from '../../../apis/detailSupplement';
 import { getUserProfile } from '../../../apis/Mypage/profile';
-import { getAgeGroupFromString } from '../../../utils/ageUtils';  // 🔥 추가
+import { getAgeGroupFromString } from '../../../utils/ageUtils'; 
 
 const ResultPage = () => {
     const [selected, setSelected] = useState(null);
@@ -15,7 +15,7 @@ const ResultPage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [detailLoading, setDetailLoading] = useState(false);
-    const [userProfile, setUserProfile] = useState({});  // 🔥 추가
+    const [userProfile, setUserProfile] = useState({}); 
     const location = useLocation();
 
     useEffect(() => {

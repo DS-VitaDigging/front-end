@@ -27,11 +27,11 @@ export const label = css`
 
 export const input = css`
   width: 100%;
-  padding: 0.8rem;
+  height: 4.1rem;
+  padding: 1rem;
   border: 1px solid #626f47;
   border-radius: 5px;
-  font-size: 1rem;
-  background-color: #d9d9d9;
+  font-size: 1.5rem;
 
   &:focus {
     background-color: #f5f5f5;
@@ -47,9 +47,10 @@ export const buttonGroup = css`
 `;
 
 export const loginButton = css`
+  height: 4.3rem;
   margin-top: 2rem;
-  padding: 0.8rem;
-  font-size: 1.5rem;
+  padding: 1rem;
+  font-size: 1.8rem;
   background-color: #626f47;
   color: white;
   border: none;
@@ -63,8 +64,9 @@ export const loginButton = css`
 `;
 
 export const signupButton = css`
-  padding: 0.8rem;
-  font-size: 1.5rem;
+  height: 4.3rem;
+  padding: 1rem;
+  font-size: 1.8rem;
   background-color: #a4b465;
   color: white;
   border: none;

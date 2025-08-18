@@ -157,12 +157,22 @@ export const popup = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+`;
+
+export const closeIcon = css`
+    position: absolute;
+    top: 1.8rem;
+    right: 1.8rem;
+    font-size: 2.5rem;
+    cursor: pointer;
 `;
 
 export const popupTitle = css`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 2.5rem;
+  margin-top: 1rem;
 `;
 
 export const popupLabel = css`

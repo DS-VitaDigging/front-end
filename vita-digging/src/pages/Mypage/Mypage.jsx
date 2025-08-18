@@ -6,7 +6,6 @@ import PasswordPopup from './components/PasswordPopup';
 import { getUserProfile } from '../../apis/Mypage/profile';
 
 const Mypage = () => {
-  const [form, setForm] = useState(null);
   const [userProfile, setUserProfile] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,12 +34,7 @@ const Mypage = () => {
   if (loading) return <div css={styles.wrapper}>로딩 중...</div>;
   if (error) return <div css={styles.wrapper}>{error}</div>;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // 닉네임 변경 성공 후 호출
+  // 닉네임 변경 성공 후 
   const handleNicknameChangeSuccess = (newNickname) => {
     setUserProfile(prev => ({
       ...prev,
@@ -98,8 +92,6 @@ const Mypage = () => {
 
       {nicknamePopupVisible && (
         <NicknamePopup
-          nickname={userProfile.name}
-          onChange={handleChange}
           onClose={() => setNicknamePopupVisible(false)}
           onSuccess={handleNicknameChangeSuccess}
         />

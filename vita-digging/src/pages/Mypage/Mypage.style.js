@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 
 export const wrapper = css`
-  padding: 6rem;
-  margin-top: 5.9rem;
+  padding: 2.3rem;
+  margin-top: 12.3rem;
   overflow: hidden;
   position: relative;
 `;
@@ -21,39 +21,39 @@ export const profileInfo = css`
 `;
 
 export const profileIcon = css`
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
+`;
+
+export const nicknameContainer = css`
+  align-items: baseline;       
 `;
 
 export const nickname = css`
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
+  line-height: 1; 
 `;
 
 export const editButton = css`
-  background: none;
-  border: none;
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-left: 0.4rem;
+  background: none; 
+  border: 0; 
+  padding: 0; 
   cursor: pointer;
 
-  img {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-export const logoutButton = css`
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
+  img { 
+    width: 1.4rem; 
+    height: 1.4rem; 
+    display: block; 
+    }
 `;
 
 export const infoSection = css`
   margin-bottom: 4rem;
+  margin-left: 2rem;
 `;
 
 export const sectionTitle = css`
@@ -67,21 +67,20 @@ export const infoTable = css`
   grid-template-columns: 1fr 2fr;
   row-gap: 1rem;
   column-gap: 2rem;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
-
-  div:nth-of-type(odd) {
-    font-weight: bold;
-  }
+  margin-left: 1rem;
 `;
 
 export const changePassword = css`
   text-decoration: underline;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.5rem;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
 `;
 
 export const pillSection = css``;
@@ -150,28 +149,36 @@ export const popupOverlay = css`
 
 export const popup = css`
   background-color: #FEFAE0;
-  padding: 2rem;
+  padding-top: 4rem; 
+  padding-bottom: 3rem;
   border-radius: 15px;
-  width: 100%;
-  max-width: 400px;
+  width: 28.9rem;
   display: flex;
   flex-direction: column;
-
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const popupTitle = css`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 2.5rem;
-  text-align: center;
 `;
 
 export const popupLabel = css`
   color: #626F47;
   font-weight: bold;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  margin-top: 3rem;
+  align-self: flex-start;
+`;
+
+export const popupInputContainer = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 `;
 
 export const popupInput = css`
@@ -179,9 +186,10 @@ export const popupInput = css`
   padding: 0.8rem;
   border: none;
   border-bottom: 2px solid #A4B465;
-  font-size: 1rem;
+  font-size: 1.3rem;
   background: transparent;
   color: #333;
+  width: 23rem;
 
   &::placeholder {
     color: #A4B465;
@@ -189,7 +197,6 @@ export const popupInput = css`
 
   &:focus {
     outline: none;
-    background: #fff;
   }
 `;
 
@@ -198,11 +205,13 @@ export const popupButton = css`
   background-color: #FFCF50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   margin-top:1rem;
+  width: 9.6rem;
+  height: 3.5rem;
 
   &:hover {
     background-color: #f5b800;

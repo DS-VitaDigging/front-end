@@ -20,7 +20,7 @@ const Login = () => {
         password: form.password,
       });
 
-      const { token } = res.data;
+      const { token } = res.data.data;
       localStorage.setItem('accessToken', token);
       navigate('/');
     } catch (error) {

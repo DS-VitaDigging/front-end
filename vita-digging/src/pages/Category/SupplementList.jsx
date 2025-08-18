@@ -20,7 +20,7 @@ const categoryInfo = {
     description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
   },
     eyes: {
-    label: '뼈 강화',
+    label: '뼈 강화', 
     icon: '/images/icon_bones.svg',
     description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
   },

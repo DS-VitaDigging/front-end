@@ -84,57 +84,6 @@ export const changePassword = css`
   cursor: pointer;
 `;
 
-export const pillSection = css``;
-
-export const pillHeader = css`
-  margin-top: 5.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const moreButton = css`
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 120%;
-    height: 120%;
-  }
-`;
-
-export const pillList = css`
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-export const pillItem = css`
-  display: flex;
-  align-items: center;
-  background-color: #FEFAE0;
-  padding: 1rem;
-  border-radius: 10px;
-  gap: 1rem;
-`;
-
-export const pillImage = css`
-  width: 40px;
-  height: 40px;
-`;
-
-export const pillManufacturer = css`
-  font-size: 0.9rem;
-  color: gray;
-  margin-bottom: 0.2rem;
-`;
-
-export const pillName = css`
-  font-weight: bold;
-`;
-
 export const popupOverlay = css`
   position: fixed;
   top: 0;

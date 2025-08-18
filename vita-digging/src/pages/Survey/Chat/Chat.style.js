@@ -12,7 +12,7 @@ export const chatContainer = css`
     flex-direction: column;
     max-height: 53rem;
     padding: 2rem;
-    padding-bottom: 8rem;
+    padding-bottom: 10rem;
     flex: 1;
     overflow-y: auto;
     scroll-behavior: smooth; 
@@ -123,28 +123,13 @@ export const resultMessage = css`
     }
 `;
 
-export const resultButton = css`
-    margin-top: 1rem;
-    padding: 1.3rem 4rem;
-    background-color: #FFCF50;
-    border: none;
-    border-radius: 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-
-    &:hover {
-        color: #A4B465CC;
-    }
-`;
-
+// 채팅 입력창
 export const inputWrapper = css`
     display: flex;
     padding: 1.5rem 2rem;
     background-color: white;
     position: fixed;
-    bottom: 5rem; 
+    bottom: 6.5rem; 
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -170,6 +155,22 @@ export const inputField = css`
     
     &:focus:not(:disabled) {
         border-color: #facc15;
+    }
+`;
+
+export const resultButton = css`
+    margin-top: 1rem;
+    padding: 1.3rem 4rem;
+    background-color: #FFCF50;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        color: #A4B465CC;
     }
 `;
 
@@ -251,6 +252,7 @@ export const sendButton = css`
     
     &:disabled {
         background-color: #CCCCCC;
+        color: black;
         cursor: not-allowed;
         opacity: 0.6;
     }

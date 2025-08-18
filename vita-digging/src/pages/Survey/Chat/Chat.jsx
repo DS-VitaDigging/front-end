@@ -14,7 +14,8 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
-    const [finalGptResponse, setFinalGptResponse] = useState(null); 
+    const [finalGptResponse, setFinalGptResponse] = useState(null);
+    const [isSurveyComplete, setIsSurveyComplete] = useState(false); 
     const navigate = useNavigate();
     const location = useLocation();
     const chatContainerRef = useRef(null);  
@@ -59,7 +60,7 @@ const Chat = () => {
 
     // 채팅 메시지 전송
     const handleSend = async (text) => {
-        if (isProcessing || loading) {
+        if (isProcessing || loading || isSurveyComplete) {  
             return;
         }
 
@@ -89,7 +90,7 @@ const Chat = () => {
                 };
                 
                 setMessages(prev => [...prev, resultMessage]);
-                setIsProcessing(true);  // 더 이상 입력 불가
+                setIsSurveyComplete(true); 
             } else {
                 // 일반 챗봇 메시지
                 setMessages(prev => [...prev, botMessage]);
@@ -148,7 +149,10 @@ const Chat = () => {
                 )}
             </div>
 
-            <ChatInput onSend={handleSend} disabled={loading || isProcessing} />
+            <ChatInput 
+                onSend={handleSend} 
+                disabled={loading || isProcessing || isSurveyComplete}
+            />
         </div>
     );
 };

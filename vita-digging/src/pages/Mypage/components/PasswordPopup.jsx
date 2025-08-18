@@ -27,6 +27,8 @@ const PasswordPopup = ({ onClose }) => {
   return (
     <div css={styles.popupOverlay}>
       <div css={styles.popup}>
+        <span css={styles.closeIcon} onClick={onClose}>×</span>
+
         <h3 css={styles.popupTitle}>비밀번호 변경하기</h3>
 
         <div css={styles.popupInputContainer}>

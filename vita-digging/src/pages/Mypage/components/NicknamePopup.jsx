@@ -32,6 +32,8 @@ const NicknamePopup = ({ onClose, onSuccess }) => {
   return (
     <div css={styles.popupOverlay}>
       <div css={styles.popup}>
+        <span css={styles.closeIcon} onClick={onClose}>×</span>
+      
         <h3 css={styles.popupTitle}>닉네임 변경하기</h3>
         <input
           type="text"

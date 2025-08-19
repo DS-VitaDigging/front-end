@@ -12,7 +12,7 @@ const SupplementDetailModal = ({ data, onClose }) => {
                     <div css={styles.imageBox}>
                         <img src={data.imageUrl} alt={data.name} css={styles.supplementImage} />
                     </div>
-                    <div css={styles.infoBox}>
+                    <div css={infoBox}>
                         <p css={styles.name}>{data.name}</p>
                         {data.manufacturer && <p css={styles.manufacturer}>{data.manufacturer}</p>}
                         
@@ -62,7 +62,7 @@ const modalBox = css`
     background-color: #FEFAE0;
     border-radius: 2rem;
     padding: 2rem 3.5rem 3rem 3.5rem;
-    width: 34rem;
+    width: 35rem;
     position: relative;
 
     overflow-y: auto;
@@ -77,6 +77,13 @@ const closeIcon = css`
     cursor: pointer;
 `;
 
+const infoBox = css`
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+`;
+
 const headerRow = css`
     display: flex;
     align-items: center;
@@ -89,12 +96,14 @@ const purchaseBtn = css`
     background-color: #FFCF50;
     color: white;
     width: 13rem;
-    padding: 1em 3rem;
+    height: 3.8rem;
+    padding: 1rem 3rem;
     border: none;
     border-radius: 2rem;
     font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
 
     &:hover {
         color: #A4B465CC;

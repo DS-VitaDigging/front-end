@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const wrapper = css`
     padding: 2rem;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 `;
 
 export const title = css`
@@ -23,19 +24,16 @@ export const cardList = css`
     margin-top: 2.1rem;
     margin-bottom: 5.5rem;
 
-    overflow-y: auto;
-    max-height: 62rem;
 `;
 
 export const cardWrapper = css`
     display: flex;
     padding: 1.5rem;
-    min-height: 20rem;
+    min-height: 16rem;
 `;
 
 export const imageBox = css`
     display: flex;
-    align-items: center;
     margin-right: 2.7rem;
     width: 13rem;
     height: 14rem;
@@ -58,7 +56,6 @@ export const supplementImage = css`
 export const infoBox = css`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     cursor: pointer;
 `;
 

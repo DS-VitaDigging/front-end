@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import Slider from 'react-slick';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as styles from './Home.style';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,11 +10,11 @@ import VitaCard from './VitaCard/VitaCard';
 import { getPopularProductsByAge } from '../../apis/Home/home';
 import { createTags } from '../../utils/tagUtils';
 
-
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     // 연령대별 인기 제품 조회
     const fetchPopularProducts = async (ageTag) => {
@@ -25,6 +26,11 @@ const Home = () => {
         } catch (err) {
             setError('제품 정보를 불러오는데 실패했습니다.');
         }
+    };
+
+    // 상세페이지 이동
+    const handleCardClick = (productId) => {
+        navigate(`/supplement/${productId}`);
     };
 
     // 선택된 태그가 변경될 때 데이터 로드
@@ -68,7 +74,7 @@ const Home = () => {
                     {error ? (
                         <div css={styles.errorMessage}>{error}</div>
                     ) : products.map(product => (
-                            <div key={product.id}>
+                            <div key={product.id} onClick={() => handleCardClick(product.id)}>
                                 <VitaCard card={{
                                     id: product.id,
                                     title: product.name,

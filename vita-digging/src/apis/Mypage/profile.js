@@ -13,7 +13,7 @@ export const getUserProfile = async () => {
         });
         return response.data.data;
       } catch (error) {
-        console.error('신체 정보 전송 실패:', error);
+        console.error('프로필 조회 실패:', error);
         throw error;
       }
   }; 

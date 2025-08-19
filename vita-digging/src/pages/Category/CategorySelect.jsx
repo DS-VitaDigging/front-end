@@ -6,7 +6,7 @@ import * as styles from './CategorySelect.style';
 const categories = [
   { key: 'eyes', label: '눈 건강', icon: '/images/icon_eyes.svg' },
   { key: 'stemina', label: '체력 증진', icon: '/images/icon_stemina.svg' },
-  { key: 'liver', label: '장 건강', icon: '/images/icon_liver.svg' },
+  { key: 'intestines', label: '장 건강', icon: '/images/icon_intestines.svg' },
   { key: 'bones', label: '뼈 강화', icon: '/images/icon_bones.svg' },
   { key: 'skin', label: '피부 건강', icon: '/images/icon_skin.svg' },
   { key: 'blood', label: '혈액순환', icon: '/images/icon_blood.svg' },
@@ -16,14 +16,13 @@ const CategorySelect = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState([]);
 
-const handleSelect = (key) => {
-  if (selected.includes(key)) {
-    setSelected([]); // 선택해제시
-  } else {
-    setSelected([key]); // 3개선택x 단일선택
-  }
-};
-
+  const handleSelect = (key) => {
+    if (selected.includes(key)) {
+      setSelected([]); // 선택해제시
+    } else {
+      setSelected([key]); // 단일선택
+    }
+  };
 
   const handleComplete = () => {
     if (selected.length > 0) {
@@ -38,13 +37,14 @@ const handleSelect = (key) => {
       </div>
       <div css={styles.grid}>
         {categories.map(({ key, label, icon }) => (
-          <div
-            key={key}
-            css={styles.categoryBox(selected.includes(key))}
-            onClick={() => handleSelect(key)}
-          >
-            <img src={icon} alt={label} css={styles.icon} />
-            <div css={styles.label}>{label}</div>
+          <div key={key} css={styles.categoryItem}> 
+            <div
+              css={styles.categoryBox(selected.includes(key))}
+              onClick={() => handleSelect(key)}
+            >
+              <img src={icon} alt={label} css={styles.icon} />
+            </div>
+            <div css={styles.label}>{label}</div> 
           </div>
         ))}
       </div>

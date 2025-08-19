@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -25,11 +25,14 @@ export default function Header() {
 
     return (
         <header css={headerWrapper}>
-            <img
-                src={"/icons/headerLogo.svg"}
-                alt="헤더 로고"
-                css={logoImg}
-            />
+            <Link to="/">
+                <img
+                    src={"/icons/headerLogo.svg"}
+                    alt="헤더 로고"
+                    css={logoImg}
+                />
+            </Link>
+            
             {isLoggedIn && (
                 <button css={logoutButton} onClick={handleLogout}>
                     <img src="/icons/logout.svg" alt="로그아웃" />

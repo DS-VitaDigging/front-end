@@ -55,22 +55,22 @@ const SupplementDetail = () => {
 
       <div css={styles.section}>
         <div css={styles.sectionTitle}>성분</div>
-        <div>{item.ingredients}</div>
+        <div css={styles.sectionContent}>{item.ingredients}</div>
       </div>
 
       <div css={styles.section}>
         <div css={styles.sectionTitle}>효능</div>
-        <div>{item.efficacy}</div>
+        <div css={styles.sectionContent}>{item.efficacy}</div>
       </div>
 
       <div css={styles.section}>
         <div css={styles.sectionTitle}>복용법</div>
-        <div>{item.instructions}</div>
+        <div css={styles.sectionContent}>{item.instructions}</div>
       </div>
 
       <div css={styles.section}>
         <div css={styles.sectionTitle}>주의사항</div>
-        <div>{item.precautions}</div>
+        <div css={styles.sectionContent}>{item.precautions}</div>
       </div>
     </div>
   );

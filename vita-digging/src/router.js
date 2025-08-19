@@ -14,6 +14,7 @@ import SupplementDetail from './pages/Category/SupplementDetail';
 import Mypage from './pages/Mypage/Mypage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
+import Community from './pages/Community/Community';
 
 export const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRouter = () => {
       {/* 공개 페이지 */}
       <Route path="/" element={<Home />} />
       <Route path="/before-login" element={<BeforeLogin />} />
+      <Route path="/community" element={<Community />} />
 
       {/* 비로그인 전용 */}
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />

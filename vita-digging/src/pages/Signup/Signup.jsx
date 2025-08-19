@@ -55,9 +55,13 @@ const Signup = () => {
         email: form.email,
         password: form.password,
         passwordConfirm: form.passwordConfirm,
-        birth: form.birth ? new Date(form.birth).getFullYear() : null,
-        gender: form.gender === 'female' ? 'F' : form.gender === 'male' ? 'M' : 'O',
+        birth: form.birth,
+        gender: 
+          form.gender === 'female' ? '여자' 
+          : form.gender === 'male' ? '남자' : '기타',
       };
+
+      console.log('🔍 전송 데이터:', signupData);
 
       const res = await axiosInstance.post('/api/member/signup', signupData);
       console.log(res.data);

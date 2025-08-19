@@ -30,7 +30,7 @@ export const cardList = css`
 export const cardWrapper = css`
     display: flex;
     padding: 1.5rem;
-    height: 20rem;
+    min-height: 20rem;
 `;
 
 export const imageBox = css`

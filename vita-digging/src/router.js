@@ -25,6 +25,8 @@ export const AppRouter = () => {
       {/* 비로그인 전용 */}
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+
+      {/* 카테고리 관련 */}
       <Route path="/category" element={<CategorySelect />} />
       <Route path="/category/:categoryId" element={<SupplementList />} />
       <Route path="/supplement/:supplementId" element={<SupplementDetail />} />

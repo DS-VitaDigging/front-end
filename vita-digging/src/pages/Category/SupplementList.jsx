@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useParams, useNavigate } from 'react-router-dom';
 import * as styles from './SupplementList.style';
-import { supplements } from '../../api/supplements';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const categoryInfo = {
   eyes: {
@@ -9,39 +10,51 @@ const categoryInfo = {
     icon: '/images/icon_eyes.svg',
     description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
   },
-  eyes: {
+  stemina: {
     label: '체력 증진',
     icon: '/images/icon_stemina.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '체력을 높여주고, 피로 회복에 도움을 줘요',
   },
-    eyes: {
-    label: '간 건강',
+    liver: {
+    label: '장 건강',
     icon: '/images/icon_liver.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '장의 기능을 보호하고, 소화 기능에 도움을 줘요',
   },
-    eyes: {
+    bones: {
     label: '뼈 강화', 
     icon: '/images/icon_bones.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '뼈를 튼튼하게 하고, 골밀도 유지에 도움을 줘요',
   },
-    eyes: {
+    skin: {
     label: '피부 건강',
     icon: '/images/icon_skin.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '피부를 촉촉하게 하고, 탄력 개선에 도움을 줘요',
   },
-    eyes: {
+    blood: {
     label: '혈액순환',
     icon: '/images/icon_blood.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '혈액순환을 원활하게 하고, 활력 유지에 도움을 줘요',
   }
 };
 
 const SupplementList = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
+  const [supplements, setSupplements] = useState([]);
 
   const current = categoryInfo[categoryId];
-  const filtered = supplements.filter(s => s.category === current.label);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/products/category/${current.label}`);
+        setSupplements(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [categoryId]);
 
   return (
     <div css={styles.wrapper}>
@@ -53,21 +66,21 @@ const SupplementList = () => {
         {current.description}
       </div>
       <div css={styles.listWrapper}>
-        {filtered.map((item) => (
+        {supplements.map((item) => (
           <div
             key={item.id}
             css={styles.itemBox}
             onClick={() => navigate(`/supplement/${item.id}`)}
           >
             <div css={styles.imageWrapper}>
-              <img src={item.image} alt={item.name} css={styles.image} />
+              <img src={item.imageUrl || '../../images/image_pills.png'} alt={item.name} css={styles.image} />
             </div>
             <div css={styles.info}>
               <div css={styles.name}>{item.name}</div>
-              <div css={styles.brand}>{item.brand}</div>
+              <div css={styles.brand}>{item.manufacturer || '제조사 정보 없음'}</div>
               <div css={styles.tags}>
-                {item.tags.map(tag => (
-                  <span key={tag} css={styles.tag}>{tag}</span>
+                {item.efficacy?.split('/').map((tag, i) => (
+                  <span key={i} css={styles.tag}>{tag}</span>
                 ))}
               </div>
             </div>

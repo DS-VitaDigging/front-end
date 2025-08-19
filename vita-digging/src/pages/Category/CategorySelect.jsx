@@ -6,7 +6,7 @@ import * as styles from './CategorySelect.style';
 const categories = [
   { key: 'eyes', label: '눈 건강', icon: '/images/icon_eyes.svg' },
   { key: 'stemina', label: '체력 증진', icon: '/images/icon_stemina.svg' },
-  { key: 'liver', label: '간 건강', icon: '/images/icon_liver.svg' },
+  { key: 'liver', label: '장 건강', icon: '/images/icon_liver.svg' },
   { key: 'bones', label: '뼈 강화', icon: '/images/icon_bones.svg' },
   { key: 'skin', label: '피부 건강', icon: '/images/icon_skin.svg' },
   { key: 'blood', label: '혈액순환', icon: '/images/icon_blood.svg' },
@@ -16,17 +16,18 @@ const CategorySelect = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState([]);
 
-  const handleSelect = (key) => {
-    if (selected.includes(key)) {
-      setSelected(selected.filter((k) => k !== key));
-    } else if (selected.length < 3) {
-      setSelected([...selected, key]);
-    }
-  };
+const handleSelect = (key) => {
+  if (selected.includes(key)) {
+    setSelected([]); // 선택해제시
+  } else {
+    setSelected([key]); // 3개선택x 단일선택
+  }
+};
+
 
   const handleComplete = () => {
     if (selected.length > 0) {
-      navigate(`/category/${selected.join(',')}`);
+      navigate(`/category/${selected[0]}`);
     }
   };
 
@@ -34,7 +35,6 @@ const CategorySelect = () => {
     <div css={styles.wrapper}>
       <div css={styles.textGroup}>
         <div css={styles.title}>원하는 건강 카테고리를 선택해주세요</div>
-        <div css={styles.subtitle}>최대 3개 선택 가능</div>
       </div>
       <div css={styles.grid}>
         {categories.map(({ key, label, icon }) => (

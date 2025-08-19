@@ -9,6 +9,7 @@ import VitaCard from './VitaCard/VitaCard';
 import { getPopularProductsByAge } from '../../apis/Home/home';
 import { createTags } from '../../utils/tagUtils';
 
+
 const Home = () => {
     const [selectedTag, setSelectedTag] = useState('20대');
     const [products, setProducts] = useState([]);

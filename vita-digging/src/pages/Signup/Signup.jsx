@@ -55,7 +55,7 @@ const Signup = () => {
         email: form.email,
         password: form.password,
         passwordConfirm: form.passwordConfirm,
-        birthYear: form.birth ? new Date(form.birth).getFullYear() : null,
+        birth: form.birth ? new Date(form.birth).getFullYear() : null,
         gender: form.gender === 'female' ? 'F' : form.gender === 'male' ? 'M' : 'O',
       };
 

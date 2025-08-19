@@ -16,25 +16,25 @@ const Mypage = () => {
 
   const token = localStorage.getItem('accessToken');
 
-  const fetchUserProfile = async () => {
-    if (!token) return;
-
-    try {
-      setLoading(true);
-      const profile = await getUserProfile();
-      setUserProfile(profile);
-    } catch (err) {
-      console.error('프로필 조회 실패:', err);
-      setError('프로필 정보를 불러오는 중 오류가 발생했습니다.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     if (!token) return;
+
+    const fetchUserProfile = async () => {
+      try {
+        setLoading(true);
+        const profile = await getUserProfile();
+        setUserProfile(profile);
+      } catch (err) {
+        console.error('프로필 조회 실패:', err);
+        setError('프로필 정보를 불러오는 중 오류가 발생했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchUserProfile();
   }, [token]);
+
 
   if (!token) return <BeforeLogin />;
   if (loading) return <div css={styles.wrapper}>로딩 중...</div>;

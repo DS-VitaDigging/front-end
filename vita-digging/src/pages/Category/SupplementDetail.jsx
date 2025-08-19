@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getDetailSupplement } from '../../apis/detailSupplement';
 import { getAgeGroupFromString } from '../../utils/ageUtils';
@@ -8,21 +8,33 @@ import * as styles from './SupplementDetail.style';
 
 const SupplementDetail = () => {
   const { supplementId } = useParams();
-  const location = useLocation();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [userProfile, setUserProfile] = useState({}); 
 
   useEffect(() => {
-    const fetchDetail = async () => {
+    const fetchData = async () => {
       try {
         if (!supplementId) throw new Error('supplementId가 없습니다.');
 
-        const ageGroup = getAgeGroupFromString(userProfile.age);
-            
+        let userAge;
+
+        // 로그인 상태라면 사용자 나이 가져오기
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+          try {
+            const profile = await getUserProfile();
+            userAge = profile.age;
+          } catch (profileError) {
+            console.warn('프로필 조회 실패, 기본 연령대 사용');
+          }
+        }
+
+        const ageGroup = getAgeGroupFromString(userAge);
+        
         const detailData = await getDetailSupplement(supplementId, ageGroup);
         setItem(detailData);
+        
       } catch (err) {
         console.error('상세 정보 로딩 실패:', err);
         setError('영양제 상세정보를 불러오는데 실패했습니다.');
@@ -31,8 +43,8 @@ const SupplementDetail = () => {
       }
     };
 
-    fetchDetail();
-  }, [supplementId, location.state]);
+    fetchData();
+  }, [supplementId]);
 
   if (loading) return <div css={styles.wrapper}>로딩 중...</div>;
   if (error) return <div css={styles.wrapper}>{error}</div>;

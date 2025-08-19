@@ -1,5 +1,6 @@
 import axiosInstance from '../axiosInstance';
 
+
 /**
  * @param {string} ageGroup - 연령대
  * @returns {Promise} API 응답 데이터

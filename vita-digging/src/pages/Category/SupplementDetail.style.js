@@ -1,4 +1,3 @@
-// src/pages/Category/SupplementDetail.style.js
 import { css } from '@emotion/react';
 
 export const wrapper = css`
@@ -26,13 +25,14 @@ export const imageWrapper = css`
 export const image = css`
   width: 17rem;
   height: 18.4rem;
+  object-fit: contain;
 `;
 
 export const info = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const name = css`
@@ -57,9 +57,8 @@ export const buyButton = css`
   text-align: center;
   text-decoration: none;
   width: fit-content;
-  text-size: 1.4rem;
+  font-size: 1.4rem;
   white-space: nowrap;
-
 
   &:hover {
     background-color: #9ea66e;
@@ -74,16 +73,4 @@ export const sectionTitle = css`
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1.1rem;
-`;
-
-export const tags = css`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-export const tag = css`
-  background-color: #b6c384;
-  border-radius: 1rem;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.8rem;
 `;

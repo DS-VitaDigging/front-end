@@ -17,13 +17,12 @@ export const title = css`
   text-align: left;
   margin-bottom: 0.8rem;
 `;
-
 export const grid = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem 1.5rem;
-  justify-items: center;
-  margin-bottom: 3rem;
+  column-gap: 6.2rem;
+  row-gap: 5.2em;
+  justify-items: stretch; 
 `;
 
 export const categoryBox = (isSelected) => css`
@@ -32,8 +31,8 @@ export const categoryBox = (isSelected) => css`
   border-radius: 1.2rem;
   padding: 2rem 1.2rem;
   text-align: center;
-  width: 9rem;
-  height: 9.5rem;
+  width: 100%;
+  height: auto;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -44,6 +43,7 @@ export const categoryBox = (isSelected) => css`
   }
 `;
 
+
 export const icon = css`
   width: 3.5rem;
   height: 3.5rem;
@@ -51,7 +51,7 @@ export const icon = css`
 `;
 
 export const label = css`
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: bold;
 `;
 

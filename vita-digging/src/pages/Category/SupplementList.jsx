@@ -13,27 +13,27 @@ const categoryInfo = {
   stemina: {
     label: '체력 증진',
     icon: '/images/icon_stemina.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '체력을 높여주고, 피로 회복에 도움을 줘요',
   },
     liver: {
-    label: '간 건강',
+    label: '장 건강',
     icon: '/images/icon_liver.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '장의 기능을 보호하고, 소화 기능에 도움을 줘요',
   },
     bones: {
     label: '뼈 강화', 
     icon: '/images/icon_bones.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '뼈를 튼튼하게 하고, 골밀도 유지에 도움을 줘요',
   },
     skin: {
     label: '피부 건강',
     icon: '/images/icon_skin.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '피부를 촉촉하게 하고, 탄력 개선에 도움을 줘요',
   },
     blood: {
     label: '혈액순환',
     icon: '/images/icon_blood.svg',
-    description: '눈의 건강을 유지해 주고, 눈의 피로개선에 도움을 줘요',
+    description: '혈액순환을 원활하게 하고, 활력 유지에 도움을 줘요',
   }
 };
 
